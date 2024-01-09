@@ -3,7 +3,7 @@ $primary-color: #2c8ace;
 $text-color: #191919;
 
 .SideMenu {
-	width: 6rem;
+	width: 5rem;
 	background-color: $primary-color;
 	position: fixed;
 	height: 100vh;
@@ -17,6 +17,8 @@ $text-color: #191919;
 	ul {
 		color: $text-color;
 		margin-top: 1rem;
+		padding-left: 0;
+		text-align: center;
 	}
 
 	li {
