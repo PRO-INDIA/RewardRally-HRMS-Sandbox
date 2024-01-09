@@ -1,5 +1,7 @@
 import { FC, useState } from "react";
 import "./compentency.scss";
+import Wizard from "../Wizard/Wizard";
+import ProfileCard from "../ProfileCard/ProfileCard";
 
 const CompetencyComponent: FC = () => {
   const [isActivecongrats, setisActivecongrats] = useState(false);
@@ -35,7 +37,6 @@ const CompetencyComponent: FC = () => {
   };
 
   const handleSubmit = () => {
-    console.log(competencyForm);
     handleToggle();
   };
 
@@ -44,7 +45,7 @@ const CompetencyComponent: FC = () => {
       {isActivecongrats && (
         <div className="modal-wrap">
           <div className="modal-content text-center">
-            <div className="close-icon">
+            <div className="close-icon-competency" onClick={handleToggle}>
               <img
                 src="../../../assets/images/close.svg"
                 className="cursor-pointer"
@@ -66,8 +67,9 @@ const CompetencyComponent: FC = () => {
           </div>
         </div>
       )}
-
+      <ProfileCard />
       <div className="form-container main-container">
+        <Wizard />
         <form>
           <div>
             <div>
@@ -83,7 +85,7 @@ const CompetencyComponent: FC = () => {
                         onChange={(e) =>
                           handleChange(index, "courseName", e.target.value)
                         }
-                        className="input-style"
+                        className="input-style-competency "
                       />
                     </div>
                     <div>
@@ -94,7 +96,7 @@ const CompetencyComponent: FC = () => {
                         onChange={(e) =>
                           handleChange(index, "certificate", e.target.value)
                         }
-                        className="input-style"
+                        className="input-style-competency "
                       />
                     </div>
                   </div>
@@ -106,7 +108,7 @@ const CompetencyComponent: FC = () => {
                         onChange={(e) =>
                           handleChange(index, "durationFrom", e.target.value)
                         }
-                        className="input-style"
+                        className="input-style-competency "
                       />
                     </div>
                     <div>
@@ -116,11 +118,10 @@ const CompetencyComponent: FC = () => {
                         onChange={(e) =>
                           handleChange(index, "durationTo", e.target.value)
                         }
-                        className="input-style"
+                        className="input-style-competency "
                       />
                     </div>
                   </div>
-                  <hr className="my-4 w-full" />
                   {competencyForm.competencies.length > 1 && (
                     <button
                       type="button"

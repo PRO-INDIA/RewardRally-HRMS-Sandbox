@@ -1,8 +1,6 @@
 import "./Layout.scss";
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { FC } from "react";
-
 import Compentency from "../../components/compentency/compentency";
 import SideBar from "../../components/SideBar/SideBar";
 import PersonalInfo from "../../components/PersonalInfo/PersonalInfo";
