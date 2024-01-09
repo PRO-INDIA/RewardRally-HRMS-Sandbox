@@ -23,6 +23,7 @@ const Layout: FC<LayoutProps> = () => (
 							path="/information/personal-info"
 							element={<Compentency />}
 						/>
+						<Route path="/information/competency" element={<Compentency />} />
 					</Routes>
 				</main>
 			</BrowserRouter>
