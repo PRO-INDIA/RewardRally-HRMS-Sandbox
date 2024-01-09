@@ -1,0 +1,15 @@
+.Layout {
+	header {
+		img {
+			padding: 1.3em;
+		}
+	}
+	.main {
+		display: flex;
+		width: 100%;
+		.body {
+			margin-left: 6rem;
+			margin-top: 2.5rem;
+		}
+	}
+}
