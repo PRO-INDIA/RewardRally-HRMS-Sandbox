@@ -6,7 +6,7 @@ import SideBar from "../../components/SideBar/SideBar";
 import PersonalInfo from "../../components/PersonalInfo/PersonalInfo";
 import WorkHistroy from "../../components/WorkHistroy/WorkHistroy";
 import TimeSheet from "../../components/TimeSheet/TimeSheet";
-import Leave from "../../components/Leave/Leave";
+import LeavesComponent from "../../components/Leave/Leave";
 
 interface LayoutProps {}
 
@@ -28,7 +28,7 @@ const Layout: FC<LayoutProps> = () => (
             <Route path="/information/competency" element={<Compentency />} />
             <Route path="/information/work-history" element={<WorkHistroy />} />
             <Route path="/time-sheet" element={<TimeSheet />} />
-            <Route path="/leaves" element={<Leave />} />
+            <Route path="/leaves" element={<LeavesComponent />} />
           </Routes>
         </main>
       </BrowserRouter>

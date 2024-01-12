@@ -3,9 +3,7 @@ import "./PersonalInfo.scss";
 import Wizard from "../Wizard/Wizard";
 import ProfileCard from "../ProfileCard/ProfileCard";
 
-interface PersonalInfoProps {}
-
-const PersonalInfo: FC<PersonalInfoProps> = () => {
+const PersonalInfo: FC = () => {
   const [personalInfoForm, setPersonalInfoForm] = useState({
     fullName: "",
     bloodGroup: "",

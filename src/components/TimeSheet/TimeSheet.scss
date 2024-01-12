@@ -1,1 +1,149 @@
-.TimeSheet {}
+.timesheet-container {
+  flex: 1;
+  height: 80%;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 2%;
+  padding-top: 2%;
+}
+
+.timesheet-header {
+  font-size: 1.875rem;
+  font-weight: 500;
+}
+.navigate-actions-timesheet {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+.title-timesheet {
+  font-size: 1.25rem;
+  color: #718096;
+  font-weight: 500;
+}
+.navigations {
+  z-index: -30;
+  display: flex;
+  gap: 1rem;
+  font-size: 1.125rem;
+  justify-content: flex-end;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.timesheet-content {
+  height: 100%;
+  padding: 1.25rem;
+}
+.timesheet-flex-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.project-title {
+  background-color: #fafafa;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  width: 16rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #718096;
+}
+.timesheet-projectname {
+  width: 17.5rem;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  border: 1px solid #cbd5e0;
+  outline: none;
+}
+.responsible-title {
+  background-color: #fafafa;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  width: 8rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #718096;
+}
+.timesheet-dates {
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  width: 5rem;
+  display: block;
+  font-size: 0.9rem;
+  color: #718096;
+}
+.task-name {
+  width: 8rem;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  border: 1px solid #cbd5e0;
+  outline: none;
+}
+
+.timesheet-days {
+  background-color: #fafafa;
+  margin-top: -0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.375rem;
+  gap: 1rem;
+}
+
+.timesheet-inputs-types {
+  width: 5rem;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  border: 1px solid #cbd5e0;
+  outline: none;
+}
+
+.timesheet-inputs {
+  margin-top: 0.75rem;
+}
+
+.width-64 {
+  width: 4rem;
+}
+
+.project-row {
+  margin-bottom: 0.8rem;
+}
+
+.add-btn-align {
+  margin-left: 1.5rem;
+}
+
+.btn-timesheet {
+  padding: 0.8rem;
+  font-size: 0.8rem;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  background-color: #2c8ace;
+  border: none;
+}
+.width-80 {
+  width: 5rem;
+}
+
+.width-32 {
+  width: 2rem;
+}
+.label-names {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #718096;
+}
+.empty-div {
+  background-color: #000;
+  margin-left: 1.25rem;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

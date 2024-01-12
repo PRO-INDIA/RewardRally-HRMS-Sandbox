@@ -74,63 +74,69 @@ const CompetencyComponent: FC = () => {
           <div>
             <div>
               {competencyForm.competencies.map((competency, index) => (
-                <div key={index}>
-                  <div className="flex-container">
-                    <div>
-                      <label className="label-style">Degree Name</label>
-                      <input
-                        type="text"
-                        placeholder="Degree Name"
-                        value={competency.courseName}
-                        onChange={(e) =>
-                          handleChange(index, "courseName", e.target.value)
-                        }
-                        className="input-style-competency "
-                      />
+                <div>
+                  <div key={index}>
+                    <div className="flex-container">
+                      <div>
+                        <label className="label-style">Degree Name</label>
+                        <input
+                          type="text"
+                          placeholder="Degree Name"
+                          value={competency.courseName}
+                          onChange={(e) =>
+                            handleChange(index, "courseName", e.target.value)
+                          }
+                          className="input-style-competency "
+                        />
+                      </div>
+                      <div>
+                        <label className="label-style">
+                          Upload Certificate
+                        </label>
+                        <input
+                          type="file"
+                          id="certificate"
+                          onChange={(e) =>
+                            handleChange(index, "certificate", e.target.value)
+                          }
+                          className="input-style-competency "
+                        />
+                      </div>
                     </div>
-                    <div>
-                      <label className="label-style">Upload Certificate</label>
-                      <input
-                        type="file"
-                        id="certificate"
-                        onChange={(e) =>
-                          handleChange(index, "certificate", e.target.value)
-                        }
-                        className="input-style-competency "
-                      />
+                    <div className="flex-container">
+                      <div>
+                        <label className="label-style">Duration From</label>
+                        <input
+                          type="date"
+                          onChange={(e) =>
+                            handleChange(index, "durationFrom", e.target.value)
+                          }
+                          className="input-style-competency "
+                        />
+                      </div>
+                      <div>
+                        <label className="label-style">Duration To</label>
+                        <input
+                          type="date"
+                          onChange={(e) =>
+                            handleChange(index, "durationTo", e.target.value)
+                          }
+                          className="input-style-competency "
+                        />
+                      </div>
                     </div>
                   </div>
-                  <div className="flex-container">
-                    <div>
-                      <label className="label-style">Duration From</label>
-                      <input
-                        type="date"
-                        onChange={(e) =>
-                          handleChange(index, "durationFrom", e.target.value)
-                        }
-                        className="input-style-competency "
-                      />
-                    </div>
-                    <div>
-                      <label className="label-style">Duration To</label>
-                      <input
-                        type="date"
-                        onChange={(e) =>
-                          handleChange(index, "durationTo", e.target.value)
-                        }
-                        className="input-style-competency "
-                      />
-                    </div>
+                  <div>
+                    {competencyForm.competencies.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() => removeCompetency(index)}
+                        className="remove-button"
+                      >
+                        Remove
+                      </button>
+                    )}
                   </div>
-                  {competencyForm.competencies.length > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => removeCompetency(index)}
-                      className="remove-button"
-                    >
-                      Remove
-                    </button>
-                  )}
                 </div>
               ))}
             </div>
