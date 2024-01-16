@@ -5,14 +5,12 @@ import React, { FC } from "react";
 
 import Compentency from "../../components/compentency/compentency";
 import SideBar from "../../components/SideBar/SideBar";
-
+import Header from "../../components/header/header";
 interface LayoutProps {}
 
 const Layout: FC<LayoutProps> = () => (
 	<div className="Layout">
-		<header>
-			<img src="../assets/images/product-logo.svg" alt="logo" />
-		</header>
+		<Header />
 		<div className="main">
 			<BrowserRouter>
 				<SideBar />
