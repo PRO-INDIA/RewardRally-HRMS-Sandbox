@@ -76,12 +76,12 @@ const TimeSheet: FC<TimeSheetProps> = () => {
   };
 
   return (
-    <div>
+    <div className="timesheet">
       <div className="timesheet-container">
         <div className="header">
-          <div className="timesheet-header">Time Sheet - Weekly</div>
+          <div className="timesheet-header py-3">Time Sheet - Weekly</div>
           <div className="navigate-actions-timesheet">
-            <div className="title-timesheet">
+            <div className="title-timesheet py-3">
               THIS WEEK, 18 DEC 2023 - 22 DEC 2023
             </div>
             <div className="navigations">
@@ -174,24 +174,24 @@ const TimeSheet: FC<TimeSheetProps> = () => {
       {isActivecongrats && (
         <div className="modal-wrap">
           <div className="modal-content text-center">
-            <div className="flex justify-end top-0">
+            <div onClick={handleToggle} className="close-icon-competency">
               <img
                 src="../../../assets/images/close.svg"
                 className="cursor-pointer"
-                onClick={handleToggle}
                 alt="closeIcon"
               />
             </div>
-            <div className="flex justify-center">
+            <div className="congrats-img">
               <img
                 src="../../../assets/images/congragulations.svg"
                 alt="popup"
               />
             </div>
-            <div className="text-2xl my-4">Congratulations!</div>
-            <div className="text-base mb-5">
-              You have successfully completed the Timesheet and earned
-              <span className="text-orange-600 font-bold">20</span> Points
+            <div className="congrats-title">Congratulations!</div>
+            <div className="congrats-description">
+              You have completed second step sucessfully and earned
+              <span className="reward-points"> 20 </span>
+              Points
             </div>
           </div>
         </div>

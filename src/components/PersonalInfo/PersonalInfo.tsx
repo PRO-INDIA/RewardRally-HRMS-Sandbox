@@ -1,23 +1,37 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import "./PersonalInfo.scss";
 import Wizard from "../Wizard/Wizard";
 import ProfileCard from "../ProfileCard/ProfileCard";
 
 const PersonalInfo: FC = () => {
-  const [personalInfoForm, setPersonalInfoForm] = useState({
-    fullName: "",
-    bloodGroup: "",
-    contactAddress: "",
-    dateOfBirth: "",
-    personalEmail: "",
-    state: "",
-    fatherName: "",
-    personalMobileNumber: "",
-    pincode: "",
+  const [isActivecongrats, setisActivecongrats] = useState(false);
+  const [isActiveIntroCard, setisActiveIntroCard] = useState(true);
+  const [personalInfoForm, setPersonalInfoForm] = useState(() => {
+    const storedData = sessionStorage.getItem("personalInfoForm");
+    return storedData
+      ? JSON.parse(storedData)
+      : {
+          fullName: "",
+          bloodGroup: "",
+          contactAddress: "",
+          dateOfBirth: "",
+          personalEmail: "",
+          state: "",
+          fatherName: "",
+          personalMobileNumber: "",
+          pincode: "",
+        };
   });
 
+  useEffect(() => {
+    const hasAllValues = sessionStorage.getItem("personalInfoForm");
+    if (hasAllValues) {
+      setisActiveIntroCard(false);
+    }
+  }, [personalInfoForm]);
+
   const handleChange = (field: string, value: string) => {
-    setPersonalInfoForm((prevForm) => ({
+    setPersonalInfoForm((prevForm: any) => ({
       ...prevForm,
       [field]: value,
     }));
@@ -25,10 +39,70 @@ const PersonalInfo: FC = () => {
 
   const handleSubmit = () => {
     console.log(personalInfoForm);
+    handleToggleIsCongrats();
+    sessionStorage.setItem(
+      "personalInfoForm",
+      JSON.stringify(personalInfoForm)
+    );
+  };
+  const handleToggleIsCongrats = () => {
+    setisActivecongrats(!isActivecongrats);
+  };
+  const handleToggleIsIntro = () => {
+    setisActiveIntroCard(!isActiveIntroCard);
   };
 
   return (
     <div className="personal-info">
+      {isActiveIntroCard && (
+        <div className="modal-wrap">
+          <div className="modal-content text-center">
+            <div className="congrats-title">Help us know you better!</div>
+            <div className="congrats-description">
+              Complete onboarding process within 2 days and earn
+              <span className="reward-points"> 50 points </span>
+              for each step!
+            </div>
+            <div className="submit-container">
+              <button
+                type="button"
+                onClick={handleToggleIsIntro}
+                className="submit-button"
+              >
+                Start
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {isActivecongrats && (
+        <div className="modal-wrap">
+          <div className="modal-content">
+            <div
+              onClick={handleToggleIsCongrats}
+              className="close-icon-competency"
+            >
+              <img
+                src="../../../assets/images/close.svg"
+                className="cursor-pointer"
+                alt="closeIcon"
+              />
+            </div>
+            <div className="congrats-img">
+              <img
+                src="../../../assets/images/congragulations.svg"
+                alt="popup"
+              />
+            </div>
+            <div className="congrats-title">Congratulations!</div>
+            <div className="congrats-description">
+              You have completed second step sucessfully and earned
+              <span className="reward-points"> 20 </span>
+              Points
+            </div>
+          </div>
+        </div>
+      )}
       <ProfileCard />
       <div className="form-container main-container">
         <Wizard />

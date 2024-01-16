@@ -6,10 +6,20 @@ interface WorkHistroyProps {}
 
 const WorkHistroy: FC<WorkHistroyProps> = () => {
   const [isActivecongrats, setisActivecongrats] = useState(false);
-  const [workHistroyForm, setworkHistroyForm] = useState({
-    workHistories: [
-      { companyName: "", durationFrom: "", durationTo: "", certificate: "" },
-    ],
+  const [workHistroyForm, setworkHistroyForm] = useState(() => {
+    const storedData = sessionStorage.getItem("workHistroyForm");
+    return storedData
+      ? JSON.parse(storedData)
+      : {
+          workHistories: [
+            {
+              companyName: "",
+              durationFrom: "",
+              durationTo: "",
+              certificate: "",
+            },
+          ],
+        };
   });
   const handleToggle = () => {
     setisActivecongrats(!isActivecongrats);
@@ -22,7 +32,7 @@ const WorkHistroy: FC<WorkHistroyProps> = () => {
   };
 
   const addCompetency = () => {
-    setworkHistroyForm((prevForm) => ({
+    setworkHistroyForm((prevForm: any) => ({
       workHistories: [
         ...prevForm.workHistories,
         { companyName: "", durationFrom: "", durationTo: "", certificate: "" },
@@ -39,6 +49,7 @@ const WorkHistroy: FC<WorkHistroyProps> = () => {
   const handleSubmit = () => {
     console.log(workHistroyForm);
     handleToggle();
+    sessionStorage.setItem("workHistroyForm", JSON.stringify(workHistroyForm));
   };
 
   return (
@@ -74,68 +85,70 @@ const WorkHistroy: FC<WorkHistroyProps> = () => {
         <form>
           <div>
             <div>
-              {workHistroyForm.workHistories.map((competency, index) => (
-                <div key={index}>
-                  <div className="flex-container">
-                    <div>
-                      <label className="label-style">Company Name</label>
-                      <input
-                        type="text"
-                        placeholder="Company Name"
-                        value={competency.companyName}
-                        onChange={(e) =>
-                          handleChange(index, "companyName", e.target.value)
-                        }
-                        className="input-style-competency "
-                      />
+              {workHistroyForm.workHistories.map(
+                (competency: any, index: any) => (
+                  <div key={index}>
+                    <div className="flex-container">
+                      <div>
+                        <label className="label-style">Company Name</label>
+                        <input
+                          type="text"
+                          placeholder="Company Name"
+                          value={competency.companyName}
+                          onChange={(e) =>
+                            handleChange(index, "companyName", e.target.value)
+                          }
+                          className="input-style-competency "
+                        />
+                      </div>
+                      <div>
+                        <label className="label-style">
+                          Relieving Certificate
+                        </label>
+                        <input
+                          type="file"
+                          id="certificate"
+                          onChange={(e) =>
+                            handleChange(index, "certificate", e.target.value)
+                          }
+                          className="input-style-competency "
+                        />
+                      </div>
                     </div>
-                    <div>
-                      <label className="label-style">
-                        Relieving Certificate
-                      </label>
-                      <input
-                        type="file"
-                        id="certificate"
-                        onChange={(e) =>
-                          handleChange(index, "certificate", e.target.value)
-                        }
-                        className="input-style-competency "
-                      />
+                    <div className="flex-container">
+                      <div>
+                        <label className="label-style">Duration From</label>
+                        <input
+                          type="date"
+                          onChange={(e) =>
+                            handleChange(index, "durationFrom", e.target.value)
+                          }
+                          className="input-style-competency "
+                        />
+                      </div>
+                      <div>
+                        <label className="label-style">Duration To</label>
+                        <input
+                          type="date"
+                          onChange={(e) =>
+                            handleChange(index, "durationTo", e.target.value)
+                          }
+                          className="input-style-competency "
+                        />
+                      </div>
                     </div>
+                    {workHistroyForm.workHistories.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() => removeCompetency(index)}
+                        className="remove-button"
+                      >
+                        Remove
+                      </button>
+                    )}
                   </div>
-                  <div className="flex-container">
-                    <div>
-                      <label className="label-style">Duration From</label>
-                      <input
-                        type="date"
-                        onChange={(e) =>
-                          handleChange(index, "durationFrom", e.target.value)
-                        }
-                        className="input-style-competency "
-                      />
-                    </div>
-                    <div>
-                      <label className="label-style">Duration To</label>
-                      <input
-                        type="date"
-                        onChange={(e) =>
-                          handleChange(index, "durationTo", e.target.value)
-                        }
-                        className="input-style-competency "
-                      />
-                    </div>
-                  </div>
-                  {workHistroyForm.workHistories.length > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => removeCompetency(index)}
-                      className="remove-button"
-                    >
-                      Remove
-                    </button>
-                  )}
-                </div>
-              ))}
+                )
+              )}
             </div>
           </div>
           <button type="button" onClick={addCompetency} className="add-button">

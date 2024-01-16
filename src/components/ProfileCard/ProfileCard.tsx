@@ -16,7 +16,7 @@ const ProfileCard: FC<ProfileCardProps> = () => (
           />
         </div>
         <div className="label-container">
-          <div>
+          <div className="margin-bottom">
             <label className="text-color">Name:</label>
             <span>&nbsp;Amey</span>
           </div>
@@ -26,7 +26,7 @@ const ProfileCard: FC<ProfileCardProps> = () => (
           </div>
         </div>
         <div className="label-container">
-          <div>
+          <div className="margin-bottom">
             <label className="text-color">Department:</label>
             <span>&nbsp;Tech</span>
           </div>
@@ -36,7 +36,7 @@ const ProfileCard: FC<ProfileCardProps> = () => (
           </div>
         </div>
         <div className="label-container">
-          <div>
+          <div className="margin-bottom">
             <label className="text-color">Reporting Manager:</label>
             <span>&nbsp;Amal</span>
           </div>

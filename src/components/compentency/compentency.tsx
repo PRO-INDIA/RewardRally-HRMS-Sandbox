@@ -5,10 +5,20 @@ import ProfileCard from "../ProfileCard/ProfileCard";
 
 const CompetencyComponent: FC = () => {
   const [isActivecongrats, setisActivecongrats] = useState(false);
-  const [competencyForm, setCompetencyForm] = useState({
-    competencies: [
-      { courseName: "", durationFrom: "", durationTo: "", certificate: "" },
-    ],
+  const [competencyForm, setCompetencyForm] = useState(() => {
+    const storedData = sessionStorage.getItem("competencyForm");
+    return storedData
+      ? JSON.parse(storedData)
+      : {
+          competencies: [
+            {
+              courseName: "",
+              durationFrom: "",
+              durationTo: "",
+              certificate: "",
+            },
+          ],
+        };
   });
 
   const handleToggle = () => {
@@ -22,10 +32,15 @@ const CompetencyComponent: FC = () => {
   };
 
   const addCompetency = () => {
-    setCompetencyForm((prevForm) => ({
+    setCompetencyForm((prevForm: any) => ({
       competencies: [
         ...prevForm.competencies,
-        { courseName: "", durationFrom: "", durationTo: "", certificate: "" },
+        {
+          courseName: "",
+          durationFrom: "",
+          durationTo: "",
+          certificate: "",
+        },
       ],
     }));
   };
@@ -38,6 +53,7 @@ const CompetencyComponent: FC = () => {
 
   const handleSubmit = () => {
     handleToggle();
+    sessionStorage.setItem("competencyForm", JSON.stringify(competencyForm));
   };
 
   return (
@@ -60,7 +76,7 @@ const CompetencyComponent: FC = () => {
             </div>
             <div className="congrats-title">Congratulations!</div>
             <div className="congrats-description">
-              You have completed second step sucessfully and earned
+              You have completed the second step successfully and earned
               <span className="reward-points"> 20 </span>
               Points
             </div>
@@ -73,8 +89,8 @@ const CompetencyComponent: FC = () => {
         <form>
           <div>
             <div>
-              {competencyForm.competencies.map((competency, index) => (
-                <div>
+              {competencyForm.competencies.map(
+                (competency: any, index: any) => (
                   <div key={index}>
                     <div className="flex-container">
                       <div>
@@ -125,20 +141,20 @@ const CompetencyComponent: FC = () => {
                         />
                       </div>
                     </div>
+                    <div>
+                      {competencyForm.competencies.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => removeCompetency(index)}
+                          className="remove-button"
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </div>
                   </div>
-                  <div>
-                    {competencyForm.competencies.length > 1 && (
-                      <button
-                        type="button"
-                        onClick={() => removeCompetency(index)}
-                        className="remove-button"
-                      >
-                        Remove
-                      </button>
-                    )}
-                  </div>
-                </div>
-              ))}
+                )
+              )}
             </div>
           </div>
           <button type="button" onClick={addCompetency} className="add-button">

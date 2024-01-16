@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Leave.scss";
 const LeavesComponent = () => {
-  const [leaveApprovalForm, setLeaveApprovalForm] = useState({
-    leaveType: "",
-    fromDate: "",
-    toDate: "",
-    firstHalf: false,
-    secondHalf: false,
-    reason: "",
+  const [leaveApprovalForm, setLeaveApprovalForm] = useState(() => {
+    const storedData = sessionStorage.getItem("leaveApprovalForm");
+    return storedData
+      ? JSON.parse(storedData)
+      : {
+          leaveType: "",
+          fromDate: "",
+          toDate: "",
+          firstHalf: false,
+          secondHalf: false,
+          reason: "",
+        };
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -30,10 +35,15 @@ const LeavesComponent = () => {
         setRewardPoints(10);
         toggleContrtsPopup();
       } else if (leaveApprovalForm.leaveType === "earned") {
-        setRewardPoints(10); // You can replace this with actual logic
+        setRewardPoints(10);
         toggleContrtsPopup();
       }
     }
+    handleToggle();
+    // sessionStorage.setItem(
+    //   "leaveApprovalForm",
+    //   JSON.stringify(leaveApprovalForm)
+    // );
   };
 
   const toggleContrtsPopup = () => {
@@ -46,40 +56,42 @@ const LeavesComponent = () => {
 
   const handleChange = (e: any) => {
     const { name, value, type, checked } = e.target;
-    setLeaveApprovalForm((prevForm) => ({
+    setLeaveApprovalForm((prevForm: any) => ({
       ...prevForm,
       [name]: type === "checkbox" ? checked : value,
     }));
   };
+  const handleToggle = () => {
+    setIsActivecongrats(!isActivecongrats);
+  };
 
   return (
     <div>
-      {/* {isActivecongrats && (
+      {isActivecongrats && (
         <div className="modal-wrap">
           <div className="modal-content text-center">
-            <div className="flex justify-end top-0">
+            <div onClick={handleToggle} className="close-icon-competency">
               <img
                 src="../../../assets/images/close.svg"
                 className="cursor-pointer"
-                onClick={toggleContrtsPopup}
                 alt="closeIcon"
               />
             </div>
-            <div className="flex justify-center">
+            <div className="congrats-img">
               <img
                 src="../../../assets/images/congragulations.svg"
                 alt="popup"
               />
             </div>
-            <div className="text-2xl text-black my-4">Congratulations!</div>
-            <div className="text-base text-black mb-5">
-              Your leave has been applied successfully and earned
-              <span className="text-orange-600 font-bold"></span>
+            <div className="congrats-title">Congratulations!</div>
+            <div className="congrats-description">
+              You have completed second step sucessfully and earned
+              <span className="reward-points"> 20 </span>
               Points
             </div>
           </div>
         </div>
-      )} */}
+      )}
 
       <div className="leave-container">
         <span className="leave-title">Leave Management</span>
@@ -145,7 +157,7 @@ const LeavesComponent = () => {
             )}
             <div>
               {showLeaveApply && (
-                <form onSubmit={onSubmit} className="form-leave">
+                <form className="form-leave">
                   <div className="leave-type-container">
                     <label htmlFor="leaveType" className="leave-type-label">
                       Leave Type
@@ -181,14 +193,14 @@ const LeavesComponent = () => {
                       />
                     </div>
 
-                    <div className="to-date ">
+                    <div className="to-date width-96 ">
                       <label htmlFor="toDate" className="leave-type-label">
                         To Date
                       </label>
                       <input
                         type="date"
                         id="toDate"
-                        className="width-96 leave-history-inputs"
+                        className="width-100 leave-history-inputs"
                         name="toDate"
                         onChange={handleChange}
                         value={leaveApprovalForm.toDate}
@@ -224,7 +236,7 @@ const LeavesComponent = () => {
                       Reason
                     </label>
                     <textarea
-                      placeholder="Reason for Leave"
+                      placeholder="Reason"
                       id="reason"
                       className="reason-textarea"
                       name="reason"
@@ -233,9 +245,15 @@ const LeavesComponent = () => {
                     ></textarea>
                   </div>
 
-                  <button type="submit" className="leave-submit-btn">
-                    Submit
-                  </button>
+                  <div className="align-center">
+                    <button
+                      type="button"
+                      onClick={onSubmit}
+                      className="leave-submit-btn"
+                    >
+                      Apply
+                    </button>
+                  </div>
                 </form>
               )}
             </div>

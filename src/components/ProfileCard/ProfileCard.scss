@@ -8,7 +8,7 @@
 }
 .profile-card {
   display: flex;
-  height: 10%;
+  height: 15%;
   width: 60%;
   margin-left: 20%;
   padding-left: 0.5rem;
@@ -18,19 +18,21 @@
   width: 100%;
   display: flex;
   gap: 1rem;
-  padding-top: 1rem;
+  padding: 0.5rem;
   justify-content: space-around;
+  align-items: center;
   border-radius: 10px;
-  border: 0.5px solid #dad3d3;
-  background: #f7f7f7;
+  border: 0.5px solid #0d0505;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
 .profile-image-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   align-self: center;
+  height: 100%;
 }
 .profile-image {
   border-width: 2px;
@@ -47,4 +49,8 @@
 }
 .text-color {
   color: #969696;
+}
+
+.margin-bottom {
+  margin-bottom: 0.7rem;
 }
