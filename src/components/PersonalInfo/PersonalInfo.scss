@@ -26,7 +26,7 @@
     min-width: 400px !important;
   }
 }
-.main-container {
+.main-container-profile-info {
   border-radius: 10px;
   background-color: #fff;
   padding: 2em;
@@ -35,25 +35,26 @@
 body {
   background-color: #f7f7f7;
 }
-.form-container {
+.form-container-profile-info {
   height: 80%;
   width: 80%;
   margin: auto;
 }
-.flex-container {
+.flex-container-profile-info {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 100%;
+  gap: 1rem;
   margin-top: 1rem;
 }
-.label-style {
+.label-style-personal-info {
   display: block;
   margin-bottom: 0.5rem;
   font-size: 1rem;
   color: #718096;
 }
-.input-style-competency {
-  width: 30rem;
+.input-style-personal-info {
+  width: 20rem;
   border-radius: 0.375rem;
   padding: 0.8rem;
   font-size: medium;
@@ -66,6 +67,22 @@ body {
     outline: none;
   }
 }
+
+.input-personal-info {
+  width: 21.5rem;
+  border-radius: 0.375rem;
+  padding: 0.8rem;
+  font-size: medium;
+  &::placeholder {
+    color: #cbd5e0;
+  }
+  border: 1px solid #cbd5e0;
+  outline: none;
+  &:focus {
+    outline: none;
+  }
+}
+
 .submit-button {
   padding: 0.75rem;
   font-size: 1.25rem;
@@ -100,6 +117,8 @@ button {
 }
 .submit-container {
   display: flex;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
   justify-content: center;
 }
 
@@ -120,8 +139,11 @@ button {
   }
 }
 
-.close-icon-competency {
-  cursor: pointer;
+.close-icon {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  top: 0;
 }
 .congrats-img {
   display: flex;
@@ -143,4 +165,9 @@ button {
 .reward-points {
   color: #ed8936;
   font-weight: bold;
+}
+.disabled-link {
+  color: gray;
+  text-decoration: none;
+  cursor: not-allowed;
 }

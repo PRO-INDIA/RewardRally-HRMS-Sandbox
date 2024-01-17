@@ -1,11 +1,16 @@
 import "./Layout.scss";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React, { FC } from "react";
 
 import Compentency from "../../components/compentency/compentency";
-import SideBar from "../../components/SideBar/SideBar";
+import { FC } from "react";
 import Header from "../../components/header/header";
+import LeavesComponent from "../../components/Leave/Leave";
+import PersonalInfo from "../../components/PersonalInfo/PersonalInfo";
+import SideBar from "../../components/SideBar/SideBar";
+import TimeSheet from "../../components/TimeSheet/TimeSheet";
+import WorkHistroy from "../../components/WorkHistroy/WorkHistroy";
+
 interface LayoutProps {}
 
 const Layout: FC<LayoutProps> = () => (
@@ -16,12 +21,15 @@ const Layout: FC<LayoutProps> = () => (
 				<SideBar />
 				<main className="body">
 					<Routes>
-						<Route path="/" element={<Compentency />} />
+						<Route path="/" element={<PersonalInfo />} />
 						<Route
 							path="/information/personal-info"
-							element={<Compentency />}
+							element={<PersonalInfo />}
 						/>
 						<Route path="/information/competency" element={<Compentency />} />
+						<Route path="/information/work-history" element={<WorkHistroy />} />
+						<Route path="/time-sheet" element={<TimeSheet />} />
+						<Route path="/leaves" element={<LeavesComponent />} />
 					</Routes>
 				</main>
 			</BrowserRouter>

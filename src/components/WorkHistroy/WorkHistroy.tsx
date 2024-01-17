@@ -1,18 +1,19 @@
 import { FC, useState } from "react";
-import "./compentency.scss";
+import "./WorkHistroy.scss";
 import Wizard from "../Wizard/Wizard";
 import ProfileCard from "../ProfileCard/ProfileCard";
+interface WorkHistroyProps {}
 
-const CompetencyComponent: FC = () => {
+const WorkHistroy: FC<WorkHistroyProps> = () => {
   const [isActivecongrats, setisActivecongrats] = useState(false);
-  const [competencyForm, setCompetencyForm] = useState(() => {
-    const storedData = sessionStorage.getItem("competencyForm");
+  const [workHistroyForm, setworkHistroyForm] = useState(() => {
+    const storedData = sessionStorage.getItem("workHistroyForm");
     return storedData
       ? JSON.parse(storedData)
       : {
-          competencies: [
+          workHistories: [
             {
-              courseName: "",
+              companyName: "",
               durationFrom: "",
               durationTo: "",
               certificate: "",
@@ -20,40 +21,35 @@ const CompetencyComponent: FC = () => {
           ],
         };
   });
-
   const handleToggle = () => {
     setisActivecongrats(!isActivecongrats);
   };
 
   const handleChange = (index: number, field: string, value: string) => {
-    const updatedCompetencies: any = [...competencyForm.competencies];
-    updatedCompetencies[index][field] = value;
-    setCompetencyForm({ competencies: updatedCompetencies });
+    const updatedworkHistories: any = [...workHistroyForm.workHistories];
+    updatedworkHistories[index][field] = value;
+    setworkHistroyForm({ workHistories: updatedworkHistories });
   };
 
   const addCompetency = () => {
-    setCompetencyForm((prevForm: any) => ({
-      competencies: [
-        ...prevForm.competencies,
-        {
-          courseName: "",
-          durationFrom: "",
-          durationTo: "",
-          certificate: "",
-        },
+    setworkHistroyForm((prevForm: any) => ({
+      workHistories: [
+        ...prevForm.workHistories,
+        { companyName: "", durationFrom: "", durationTo: "", certificate: "" },
       ],
     }));
   };
 
   const removeCompetency = (index: number) => {
-    const updatedCompetencies = [...competencyForm.competencies];
-    updatedCompetencies.splice(index, 1);
-    setCompetencyForm({ competencies: updatedCompetencies });
+    const updatedworkHistories = [...workHistroyForm.workHistories];
+    updatedworkHistories.splice(index, 1);
+    setworkHistroyForm({ workHistories: updatedworkHistories });
   };
 
   const handleSubmit = () => {
+    console.log(workHistroyForm);
     handleToggle();
-    sessionStorage.setItem("competencyForm", JSON.stringify(competencyForm));
+    sessionStorage.setItem("workHistroyForm", JSON.stringify(workHistroyForm));
   };
 
   return (
@@ -61,7 +57,7 @@ const CompetencyComponent: FC = () => {
       {isActivecongrats && (
         <div className="modal-wrap">
           <div className="modal-content text-center">
-            <div className="close-icon-competency" onClick={handleToggle}>
+            <div onClick={handleToggle} className="close-icon-competency">
               <img
                 src="../../../assets/images/close.svg"
                 className="cursor-pointer"
@@ -76,7 +72,7 @@ const CompetencyComponent: FC = () => {
             </div>
             <div className="congrats-title">Congratulations!</div>
             <div className="congrats-description">
-              You have completed the second step successfully and earned
+              You have completed second step sucessfully and earned
               <span className="reward-points"> 20 </span>
               Points
             </div>
@@ -89,25 +85,25 @@ const CompetencyComponent: FC = () => {
         <form>
           <div>
             <div>
-              {competencyForm.competencies.map(
+              {workHistroyForm.workHistories.map(
                 (competency: any, index: any) => (
                   <div key={index}>
                     <div className="flex-container">
                       <div>
-                        <label className="label-style">Degree Name</label>
+                        <label className="label-style">Company Name</label>
                         <input
                           type="text"
-                          placeholder="Degree Name"
-                          value={competency.courseName}
+                          placeholder="Company Name"
+                          value={competency.companyName}
                           onChange={(e) =>
-                            handleChange(index, "courseName", e.target.value)
+                            handleChange(index, "companyName", e.target.value)
                           }
                           className="input-style-competency "
                         />
                       </div>
                       <div>
                         <label className="label-style">
-                          Upload Certificate
+                          Relieving Certificate
                         </label>
                         <input
                           type="file"
@@ -141,17 +137,15 @@ const CompetencyComponent: FC = () => {
                         />
                       </div>
                     </div>
-                    <div>
-                      {competencyForm.competencies.length > 1 && (
-                        <button
-                          type="button"
-                          onClick={() => removeCompetency(index)}
-                          className="remove-button"
-                        >
-                          Remove
-                        </button>
-                      )}
-                    </div>
+                    {workHistroyForm.workHistories.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() => removeCompetency(index)}
+                        className="remove-button"
+                      >
+                        Remove
+                      </button>
+                    )}
                   </div>
                 )
               )}
@@ -171,12 +165,12 @@ const CompetencyComponent: FC = () => {
           </div>
         </form>
         <div className="navigate-actions">
-          <a href="/information/personal-info">&lt; Previous</a>
-          <a href="/information/work-history">Next &gt;</a>
+          <a href="/information/competency">&lt; Previous</a>
+          <a className="disabled-link">Next &gt;</a>
         </div>
       </div>
     </div>
   );
 };
 
-export default CompetencyComponent;
+export default WorkHistroy;
