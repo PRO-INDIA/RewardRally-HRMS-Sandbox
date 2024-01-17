@@ -20,7 +20,7 @@ interface PersonalInfoForm {
 const PersonalInfo: FC = () => {
 	const [isActivecongrats, setisActivecongrats] = useState(false);
 	const [isActiveIntroCard, setisActiveIntroCard] = useState(true);
-	const [updatedPoints, setPoints] = useState<number>();
+	const [updatedPoints, setPoints] = useState<number>(0);
 	const [personalInfoForm, setPersonalInfoForm] = useState<PersonalInfoForm>(
 		() => {
 			const storedData = sessionStorage.getItem("personalInfoForm");
@@ -61,7 +61,8 @@ const PersonalInfo: FC = () => {
 			""
 		);
 
-		setPoints(res.data.points);
+		setPoints(res.data.data.points);
+
 		handleToggleIsCongrats();
 	};
 	const handleSubmit = async () => {
