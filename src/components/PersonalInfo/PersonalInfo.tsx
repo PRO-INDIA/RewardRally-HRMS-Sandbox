@@ -6,26 +6,39 @@ import ProfileCard from "../ProfileCard/ProfileCard";
 import Wizard from "../Wizard/Wizard";
 import { updateGameAction } from "@stagetheproindia/react-progamification";
 
+interface PersonalInfoForm {
+	fullName: string;
+	bloodGroup: string;
+	contactAddress: string;
+	dateOfBirth: string;
+	personalEmail: string;
+	state: string;
+	fatherName: string;
+	personalMobileNumber: string;
+	pincode: string;
+}
 const PersonalInfo: FC = () => {
 	const [isActivecongrats, setisActivecongrats] = useState(false);
 	const [isActiveIntroCard, setisActiveIntroCard] = useState(true);
 	const [updatedPoints, setPoints] = useState<number>();
-	const [personalInfoForm, setPersonalInfoForm] = useState(() => {
-		const storedData = sessionStorage.getItem("personalInfoForm");
-		return storedData
-			? JSON.parse(storedData)
-			: {
-					fullName: "",
-					bloodGroup: "",
-					contactAddress: "",
-					dateOfBirth: "",
-					personalEmail: "",
-					state: "",
-					fatherName: "",
-					personalMobileNumber: "",
-					pincode: "",
-			  };
-	});
+	const [personalInfoForm, setPersonalInfoForm] = useState<PersonalInfoForm>(
+		() => {
+			const storedData = sessionStorage.getItem("personalInfoForm");
+			return storedData
+				? JSON.parse(storedData)
+				: {
+						fullName: "",
+						bloodGroup: "",
+						contactAddress: "",
+						dateOfBirth: "",
+						personalEmail: "",
+						state: "",
+						fatherName: "",
+						personalMobileNumber: "",
+						pincode: "",
+				  };
+		}
+	);
 
 	useEffect(() => {
 		const hasAllValues = sessionStorage.getItem("personalInfoForm");
@@ -34,8 +47,8 @@ const PersonalInfo: FC = () => {
 		}
 	}, [personalInfoForm]);
 
-	const handleChange = (field: string, value: string) => {
-		setPersonalInfoForm((prevForm: any) => ({
+	const handleChange = (field: keyof PersonalInfoForm, value: string) => {
+		setPersonalInfoForm((prevForm) => ({
 			...prevForm,
 			[field]: value,
 		}));
@@ -47,13 +60,13 @@ const PersonalInfo: FC = () => {
 			"",
 			""
 		);
-		
+
 		setPoints(res.data.points);
 		handleToggleIsCongrats();
 	};
 	const handleSubmit = async () => {
 		await triggerGameAction();
-		
+
 		sessionStorage.setItem(
 			"personalInfoForm",
 			JSON.stringify(personalInfoForm)

@@ -3,36 +3,50 @@ import "./WorkHistroy.scss";
 import Wizard from "../Wizard/Wizard";
 import ProfileCard from "../ProfileCard/ProfileCard";
 interface WorkHistroyProps {}
+interface WorkHistory {
+  companyName: string;
+  durationFrom: string;
+  durationTo: string;
+  certificate: string;
+}
+
+interface WorkHistroyForm {
+  workHistories: WorkHistory[];
+}
 
 const WorkHistroy: FC<WorkHistroyProps> = () => {
   const [isActivecongrats, setisActivecongrats] = useState(false);
-  const [workHistroyForm, setworkHistroyForm] = useState(() => {
-    const storedData = sessionStorage.getItem("workHistroyForm");
-    return storedData
-      ? JSON.parse(storedData)
-      : {
-          workHistories: [
-            {
-              companyName: "",
-              durationFrom: "",
-              durationTo: "",
-              certificate: "",
-            },
-          ],
-        };
-  });
+  const [workHistroyForm, setworkHistroyForm] = useState<WorkHistroyForm>(
+    () => {
+      const storedData = sessionStorage.getItem("workHistroyForm");
+      return storedData
+        ? JSON.parse(storedData)
+        : {
+            workHistories: [
+              {
+                companyName: "",
+                durationFrom: "",
+                durationTo: "",
+                certificate: "",
+              },
+            ],
+          };
+    }
+  );
   const handleToggle = () => {
     setisActivecongrats(!isActivecongrats);
   };
 
   const handleChange = (index: number, field: string, value: string) => {
-    const updatedworkHistories: any = [...workHistroyForm.workHistories];
-    updatedworkHistories[index][field] = value;
+    const updatedworkHistories: WorkHistory[] = [
+      ...workHistroyForm.workHistories,
+    ];
+    updatedworkHistories[index][field as keyof WorkHistory] = value;
     setworkHistroyForm({ workHistories: updatedworkHistories });
   };
 
   const addCompetency = () => {
-    setworkHistroyForm((prevForm: any) => ({
+    setworkHistroyForm((prevForm: WorkHistroyForm) => ({
       workHistories: [
         ...prevForm.workHistories,
         { companyName: "", durationFrom: "", durationTo: "", certificate: "" },
@@ -86,7 +100,7 @@ const WorkHistroy: FC<WorkHistroyProps> = () => {
           <div>
             <div>
               {workHistroyForm.workHistories.map(
-                (competency: any, index: any) => (
+                (competency: WorkHistory, index: number) => (
                   <div key={index}>
                     <div className="flex-container">
                       <div>

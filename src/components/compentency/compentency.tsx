@@ -2,37 +2,48 @@ import { FC, useState } from "react";
 import "./compentency.scss";
 import Wizard from "../Wizard/Wizard";
 import ProfileCard from "../ProfileCard/ProfileCard";
+interface Competency {
+  courseName: string;
+  durationFrom: string;
+  durationTo: string;
+  certificate: string;
+}
 
+interface UpdatedCompetencies {
+  competencies: Competency[];
+}
 const CompetencyComponent: FC = () => {
   const [isActivecongrats, setisActivecongrats] = useState(false);
-  const [competencyForm, setCompetencyForm] = useState(() => {
-    const storedData = sessionStorage.getItem("competencyForm");
-    return storedData
-      ? JSON.parse(storedData)
-      : {
-          competencies: [
-            {
-              courseName: "",
-              durationFrom: "",
-              durationTo: "",
-              certificate: "",
-            },
-          ],
-        };
-  });
+  const [competencyForm, setCompetencyForm] = useState<UpdatedCompetencies>(
+    () => {
+      const storedData = sessionStorage.getItem("competencyForm");
+      return storedData
+        ? JSON.parse(storedData)
+        : {
+            competencies: [
+              {
+                courseName: "",
+                durationFrom: "",
+                durationTo: "",
+                certificate: "",
+              },
+            ],
+          };
+    }
+  );
 
   const handleToggle = () => {
     setisActivecongrats(!isActivecongrats);
   };
 
   const handleChange = (index: number, field: string, value: string) => {
-    const updatedCompetencies: any = [...competencyForm.competencies];
-    updatedCompetencies[index][field] = value;
+    const updatedCompetencies: Competency[] = [...competencyForm.competencies];
+    updatedCompetencies[index][field as keyof Competency] = value;
     setCompetencyForm({ competencies: updatedCompetencies });
   };
 
   const addCompetency = () => {
-    setCompetencyForm((prevForm: any) => ({
+    setCompetencyForm((prevForm: UpdatedCompetencies) => ({
       competencies: [
         ...prevForm.competencies,
         {
@@ -90,7 +101,7 @@ const CompetencyComponent: FC = () => {
           <div>
             <div>
               {competencyForm.competencies.map(
-                (competency: any, index: any) => (
+                (competency: Competency, index: number) => (
                   <div key={index}>
                     <div className="flex-container">
                       <div>
