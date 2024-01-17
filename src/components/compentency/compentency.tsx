@@ -151,6 +151,7 @@ const CompetencyComponent: FC = () => {
 												<label className="label-style">Duration From</label>
 												<input
 													type="date"
+													value={competency.durationFrom}
 													onChange={(e) =>
 														handleChange(index, "durationFrom", e.target.value)
 													}
@@ -161,6 +162,7 @@ const CompetencyComponent: FC = () => {
 												<label className="label-style">Duration To</label>
 												<input
 													type="date"
+													value={competency.durationTo}
 													onChange={(e) =>
 														handleChange(index, "durationTo", e.target.value)
 													}

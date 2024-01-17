@@ -117,7 +117,7 @@ const WorkHistroy: FC<WorkHistroyProps> = () => {
           <div>
             <div>
               {workHistroyForm.workHistories.map(
-                (competency: WorkHistory, index: number) => (
+                (workHistory: WorkHistory, index: number) => (
                   <div key={index}>
                     <div className="flex-container">
                       <div>
@@ -125,7 +125,7 @@ const WorkHistroy: FC<WorkHistroyProps> = () => {
                         <input
                           type="text"
                           placeholder="Company Name"
-                          value={competency.companyName}
+                          value={workHistory.companyName}
                           onChange={(e) =>
                             handleChange(index, "companyName", e.target.value)
                           }
@@ -151,6 +151,7 @@ const WorkHistroy: FC<WorkHistroyProps> = () => {
                         <label className="label-style">Duration From</label>
                         <input
                           type="date"
+                          value={workHistory.durationFrom}
                           onChange={(e) =>
                             handleChange(index, "durationFrom", e.target.value)
                           }
@@ -161,6 +162,7 @@ const WorkHistroy: FC<WorkHistroyProps> = () => {
                         <label className="label-style">Duration To</label>
                         <input
                           type="date"
+                          value={workHistory.durationTo}
                           onChange={(e) =>
                             handleChange(index, "durationTo", e.target.value)
                           }
