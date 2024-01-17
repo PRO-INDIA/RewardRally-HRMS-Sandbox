@@ -1,7 +1,6 @@
 import "./compentency.scss";
-
 import { FC, useState } from "react";
-
+import { environment } from "../../environments/environment";
 import ProfileCard from "../ProfileCard/ProfileCard";
 import Wizard from "../Wizard/Wizard";
 import { updateGameAction } from "@stagetheproindia/react-progamification";
@@ -39,8 +38,8 @@ const CompetencyComponent: FC = () => {
 	);
 	const triggerGameAction = async () => {
 		const res = await updateGameAction(
-			"b171b656-039d-4243-bfe7-1c8c9af6665c",
-			"659645cdf65b39eb5e13596f",
+			environment.gamification.userId,
+			environment.gamification.competancySubmissionAction,
 			"",
 			""
 		);
