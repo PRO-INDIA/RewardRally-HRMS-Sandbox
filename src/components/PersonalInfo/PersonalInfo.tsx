@@ -2,26 +2,38 @@ import React, { FC, useEffect, useState } from "react";
 import "./PersonalInfo.scss";
 import Wizard from "../Wizard/Wizard";
 import ProfileCard from "../ProfileCard/ProfileCard";
-
+interface PersonalInfoForm {
+  fullName: string;
+  bloodGroup: string;
+  contactAddress: string;
+  dateOfBirth: string;
+  personalEmail: string;
+  state: string;
+  fatherName: string;
+  personalMobileNumber: string;
+  pincode: string;
+}
 const PersonalInfo: FC = () => {
   const [isActivecongrats, setisActivecongrats] = useState(false);
   const [isActiveIntroCard, setisActiveIntroCard] = useState(true);
-  const [personalInfoForm, setPersonalInfoForm] = useState(() => {
-    const storedData = sessionStorage.getItem("personalInfoForm");
-    return storedData
-      ? JSON.parse(storedData)
-      : {
-          fullName: "",
-          bloodGroup: "",
-          contactAddress: "",
-          dateOfBirth: "",
-          personalEmail: "",
-          state: "",
-          fatherName: "",
-          personalMobileNumber: "",
-          pincode: "",
-        };
-  });
+  const [personalInfoForm, setPersonalInfoForm] = useState<PersonalInfoForm>(
+    () => {
+      const storedData = sessionStorage.getItem("personalInfoForm");
+      return storedData
+        ? JSON.parse(storedData)
+        : {
+            fullName: "",
+            bloodGroup: "",
+            contactAddress: "",
+            dateOfBirth: "",
+            personalEmail: "",
+            state: "",
+            fatherName: "",
+            personalMobileNumber: "",
+            pincode: "",
+          };
+    }
+  );
 
   useEffect(() => {
     const hasAllValues = sessionStorage.getItem("personalInfoForm");
@@ -30,8 +42,8 @@ const PersonalInfo: FC = () => {
     }
   }, [personalInfoForm]);
 
-  const handleChange = (field: string, value: string) => {
-    setPersonalInfoForm((prevForm: any) => ({
+  const handleChange = (field: keyof PersonalInfoForm, value: string) => {
+    setPersonalInfoForm((prevForm) => ({
       ...prevForm,
       [field]: value,
     }));

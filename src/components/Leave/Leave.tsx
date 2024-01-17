@@ -1,7 +1,15 @@
 import { useState } from "react";
 import "./Leave.scss";
+interface LeaveApprovalForm {
+  leaveType: string;
+  fromDate: string;
+  toDate: string;
+  firstHalf: boolean;
+  secondHalf: boolean;
+  reason: string;
+}
 const LeavesComponent = () => {
-  const [leaveApprovalForm, setLeaveApprovalForm] = useState(() => {
+  const [leaveApprovalForm, setLeaveApprovalForm] = useState<LeaveApprovalForm>(() => {
     const storedData = sessionStorage.getItem("leaveApprovalForm");
     return storedData
       ? JSON.parse(storedData)
@@ -56,7 +64,7 @@ const LeavesComponent = () => {
 
   const handleChange = (e: any) => {
     const { name, value, type, checked } = e.target;
-    setLeaveApprovalForm((prevForm: any) => ({
+    setLeaveApprovalForm((prevForm) => ({
       ...prevForm,
       [name]: type === "checkbox" ? checked : value,
     }));

@@ -2,10 +2,23 @@ import React, { FC, useState, useEffect } from "react";
 import "./TimeSheet.scss";
 
 interface TimeSheetProps {}
+interface Project {
+  projectName: string;
+  responsibility: string;
+  monday: string;
+  tuesday: string;
+  wednesday: string;
+  thursday: string;
+  friday: string;
+}
+
+interface TimeSheetForm {
+  projects: Project[];
+}
 
 const TimeSheet: FC<TimeSheetProps> = () => {
   const [isActivecongrats, setIsActivecongrats] = useState(false);
-  const [timesheetForm, setTimesheetForm] = useState({
+  const [timesheetForm, setTimesheetForm] = useState<TimeSheetForm>({
     projects: [
       {
         projectName: "",
@@ -41,8 +54,8 @@ const TimeSheet: FC<TimeSheetProps> = () => {
   }
 
   const handleChange = (index: number, field: string, value: string) => {
-    const updatedProjects: any = [...timesheetForm.projects];
-    updatedProjects[index][field] = value;
+    const updatedProjects: Project[] = [...timesheetForm.projects];
+    updatedProjects[index][field as keyof Project] = value;
     setTimesheetForm({ projects: updatedProjects });
   };
 
