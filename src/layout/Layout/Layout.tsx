@@ -10,6 +10,7 @@ import PersonalInfo from "../../components/PersonalInfo/PersonalInfo";
 import SideBar from "../../components/SideBar/SideBar";
 import TimeSheet from "../../components/TimeSheet/TimeSheet";
 import WorkHistroy from "../../components/WorkHistroy/WorkHistroy";
+import Footer from "../../components/Footer/Footer";
 
 interface LayoutProps {}
 
@@ -34,6 +35,7 @@ const Layout: FC<LayoutProps> = () => (
 				</main>
 			</BrowserRouter>
 		</div>
+		<Footer/>
 	</div>
 );
 
