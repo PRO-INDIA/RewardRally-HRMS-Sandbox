@@ -13,12 +13,14 @@ const Header: FC<HeaderProps> = () => (
         <img className="logo" src="../assets/images/flag.png" alt="logo" />
         <span>Reward Rally</span>
       </div>
-      <ProGamification
-        userId={environment.gamification.userId}
-        applicationId={environment.gamification.applicationId}
-        clientId={environment.clientId}
-        clientSecret={environment.clientSecret}
-      />
+      <div className="gamification-package">
+        <ProGamification
+          userId={environment.gamification.userId}
+          applicationId={environment.gamification.applicationId}
+          clientId={environment.clientId}
+          clientSecret={environment.clientSecret}
+        />
+      </div>
     </header>
   </div>
 );

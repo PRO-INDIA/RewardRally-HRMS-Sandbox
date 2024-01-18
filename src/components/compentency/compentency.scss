@@ -12,6 +12,8 @@
   align-items: center !important;
   background-color: rgba(0, 0, 0, 0.2);
   border: #dedede;
+  backdrop-filter: blur(1px);
+  transition: backdrop-filter 0.3s ease-in-out;
   .modal-content {
     box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
       rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
