@@ -1,7 +1,7 @@
 import "./TimeSheet.scss";
 import React, { FC, useEffect, useState } from "react";
 import { useForm, SubmitHandler, useWatch } from "react-hook-form";
-import { environment } from "../../Environments/environment";
+import { environment } from "../../environments/environment";
 import { updateGameAction } from "@stagetheproindia/react-progamification";
 
 interface TimeSheetProps {}

@@ -7,7 +7,7 @@ import {
 } from "react-hook-form";
 import "./Compentency.scss";
 import { FC, useState } from "react";
-import { environment } from "../../Environments/environment";
+import { environment } from "../../environments/environment";
 import ProfileCard from "../ProfileCard/ProfileCard";
 import Wizard from "../Wizard/Wizard";
 import { updateGameAction } from "@stagetheproindia/react-progamification";

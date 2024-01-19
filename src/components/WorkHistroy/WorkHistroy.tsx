@@ -2,7 +2,7 @@ import React from "react";
 import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import "./WorkHistroy.scss";
 import { FC, useState } from "react";
-import { environment } from "../../Environments/environment";
+import { environment } from "../../environments/environment";
 import ProfileCard from "../ProfileCard/ProfileCard";
 import Wizard from "../Wizard/Wizard";
 import { updateGameAction } from "@stagetheproindia/react-progamification";
