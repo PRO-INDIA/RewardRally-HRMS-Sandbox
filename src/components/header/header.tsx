@@ -1,4 +1,4 @@
-import "./Header.scss";
+import "./header.scss";
 import { environment } from "../../environments/environment";
 import { FC } from "react";
 

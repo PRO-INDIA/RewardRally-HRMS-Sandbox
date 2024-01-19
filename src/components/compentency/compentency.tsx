@@ -5,7 +5,7 @@ import {
   useFieldArray,
   FieldValues,
 } from "react-hook-form";
-import "./Compentency.scss";
+import "./compentency.scss";
 import { FC, useState } from "react";
 import { environment } from "../../environments/environment";
 import ProfileCard from "../ProfileCard/ProfileCard";
