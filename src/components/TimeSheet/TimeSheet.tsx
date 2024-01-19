@@ -110,7 +110,6 @@ const TimeSheet: FC<TimeSheetProps> = () => {
 
   const onSubmit: SubmitHandler<TimeSheetForm> = async (data) => {
     triggerGameAction();
-    console.log(data, "timesheetForm");
   };
 
   return (
