@@ -86,9 +86,7 @@ const PersonalInfo: FC = () => {
 
   const handleToggleIsCongrats = () => {
     setisActiveCongrats(!isActiveCongrats);
-    if (isActiveCongrats == false) {
-      navigate("/information/competency");
-    }
+
   };
 
   const handleToggleIsIntro = () => {
