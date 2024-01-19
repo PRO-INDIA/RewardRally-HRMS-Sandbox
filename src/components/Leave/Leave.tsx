@@ -55,8 +55,6 @@ const LeavesComponent = () => {
   const onSubmit = async () => {
     setPoints(0);
     setShowLeaveApply(true);
-
-    console.log(leaveApprovalForm, "leaveApprovalForm");
     if (
       leaveApprovalForm.leaveType &&
       leaveApprovalForm.fromDate &&

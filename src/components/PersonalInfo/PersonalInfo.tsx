@@ -28,7 +28,7 @@ const PersonalInfo: FC = () => {
     formState: { errors },
   } = useForm<PersonalInfoForm>();
   const navigate = useNavigate();
-  const [isActivecongrats, setisActivecongrats] = useState(false);
+  const [isActiveCongrats, setisActiveCongrats] = useState(false);
   const [isActiveIntroCard, setisActiveIntroCard] = useState(true);
   const [updatedPoints, setPoints] = useState<number>(0);
 
@@ -85,8 +85,8 @@ const PersonalInfo: FC = () => {
   };
 
   const handleToggleIsCongrats = () => {
-    setisActivecongrats(!isActivecongrats);
-    if (isActivecongrats == false) {
+    setisActiveCongrats(!isActiveCongrats);
+    if (isActiveCongrats == false) {
       navigate("/information/competency");
     }
   };
@@ -118,7 +118,7 @@ const PersonalInfo: FC = () => {
           </div>
         </div>
       )}
-      {isActivecongrats && (
+      {isActiveCongrats && (
         <div className="modal-wrap">
           <div className="modal-content">
             <div
