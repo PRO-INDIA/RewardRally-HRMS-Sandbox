@@ -9,8 +9,8 @@ import SideBar from "../../components/SideBar/SideBar";
 import TimeSheet from "../../components/TimeSheet/TimeSheet";
 import WorkHistroy from "../../components/WorkHistroy/WorkHistroy";
 import Footer from "../../components/Footer/Footer";
-import Compentency from "../../components/Compentency/Compentency";
-import Header from "../../components/Header/Header";
+import Header from "../../components/header/header";
+import Compentency from "../../components/compentency/compentency";
 interface LayoutProps {}
 
 const Layout: FC<LayoutProps> = () => (

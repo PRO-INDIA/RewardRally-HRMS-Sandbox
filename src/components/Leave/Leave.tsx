@@ -2,7 +2,7 @@ import { updateGameAction } from "@stagetheproindia/react-progamification";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./Leave.scss";
-import { environment } from "../../Environments/environment";
+import { environment } from "../../environments/environment";
 
 interface LeaveApprovalForm {
   leaveType: string;

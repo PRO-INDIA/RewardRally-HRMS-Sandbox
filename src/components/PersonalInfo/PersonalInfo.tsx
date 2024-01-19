@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import "./PersonalInfo.scss";
-import { environment } from "../../Environments/environment";
+import { environment } from "../../environments/environment";
 import { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProfileCard from "../ProfileCard/ProfileCard";
