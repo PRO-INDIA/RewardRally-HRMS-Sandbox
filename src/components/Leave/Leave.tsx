@@ -1,7 +1,8 @@
-import "./Leave.scss";
-import { environment } from "../../environments/environment";
 import { updateGameAction } from "@stagetheproindia/react-progamification";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import "./Leave.scss";
+import { environment } from "../../Environments/environment";
 
 interface LeaveApprovalForm {
   leaveType: string;
@@ -11,7 +12,14 @@ interface LeaveApprovalForm {
   secondHalf: boolean;
   reason: string;
 }
+
 const LeavesComponent = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LeaveApprovalForm>();
+
   const [leaveApprovalForm, setLeaveApprovalForm] = useState<LeaveApprovalForm>(
     () => {
       const storedData = sessionStorage.getItem("leaveApprovalForm");
@@ -28,7 +36,6 @@ const LeavesComponent = () => {
     }
   );
 
-  const [submitted, setSubmitted] = useState(false);
   const [showLeaveApply, setShowLeaveApply] = useState(false);
   const [isActivecongrats, setIsActivecongrats] = useState(false);
   const [updatedPoints, setPoints] = useState<number>(0);
@@ -42,12 +49,14 @@ const LeavesComponent = () => {
     );
 
     setPoints(res.data.data.points);
-
     handleToggle();
   };
+
   const onSubmit = async () => {
     setPoints(0);
     setShowLeaveApply(true);
+
+    console.log(leaveApprovalForm, "leaveApprovalForm");
     if (
       leaveApprovalForm.leaveType &&
       leaveApprovalForm.fromDate &&
@@ -61,10 +70,10 @@ const LeavesComponent = () => {
       }
     }
 
-    // sessionStorage.setItem(
-    //   "leaveApprovalForm",
-    //   JSON.stringify(leaveApprovalForm)
-    // );
+    sessionStorage.setItem(
+      "leaveApprovalForm",
+      JSON.stringify(leaveApprovalForm)
+    );
   };
 
   const toggleLeaveApply = () => {
@@ -78,6 +87,7 @@ const LeavesComponent = () => {
       [name]: type === "checkbox" ? checked : value,
     }));
   };
+
   const handleToggle = () => {
     setIsActivecongrats(!isActivecongrats);
   };
@@ -102,7 +112,7 @@ const LeavesComponent = () => {
             </div>
             <div className="congrats-title">Congratulations!</div>
             <div className="congrats-description">
-              You have completed second step sucessfully and earned
+              You have completed the second step successfully and earned
               <span className="reward-points"> {updatedPoints} </span>
               Points
             </div>
@@ -147,7 +157,7 @@ const LeavesComponent = () => {
           <div className="calendar-image">
             <img
               src="../../../assets/images/leavecalendar_new.svg"
-              alt="calander"
+              alt="calendar"
               className="leave-calendar-image"
             />
           </div>
@@ -166,7 +176,7 @@ const LeavesComponent = () => {
                 <div className="leave-history-image">
                   <img
                     src="../../../assets/images/leave history.svg"
-                    alt="calander"
+                    alt="calendar"
                     className="width-100"
                   />
                 </div>
@@ -174,7 +184,7 @@ const LeavesComponent = () => {
             )}
             <div>
               {showLeaveApply && (
-                <form className="form-leave">
+                <form className="form-leave" onSubmit={handleSubmit(onSubmit)}>
                   <div className="leave-type-container">
                     <label htmlFor="leaveType" className="leave-type-label">
                       Leave Type
@@ -182,17 +192,25 @@ const LeavesComponent = () => {
                     <select
                       id="leaveType"
                       className="width-96 leave-history-inputs"
+                      {...register("leaveType", {
+                        required: "Leave type is required",
+                      })}
                       name="leaveType"
                       onChange={handleChange}
                       value={leaveApprovalForm.leaveType}
                     >
-                      <option value="" disabled selected>
+                      <option value="" disabled>
                         Select Leave Type
                       </option>
                       <option value="sick">Sick Leave</option>
                       <option value="casual">Casual Leave</option>
                       <option value="earned">Earned Leave</option>
                     </select>
+                    {errors.leaveType && (
+                      <p className="error-message">
+                        {errors.leaveType.message}
+                      </p>
+                    )}
                   </div>
 
                   <div className="leave-dates-container">
@@ -204,10 +222,18 @@ const LeavesComponent = () => {
                         type="date"
                         id="fromDate"
                         className="width-100 leave-history-inputs"
+                        {...register("fromDate", {
+                          required: "From Date is required",
+                        })}
                         name="fromDate"
                         onChange={handleChange}
                         value={leaveApprovalForm.fromDate}
                       />
+                      {errors.fromDate && (
+                        <p className="error-message">
+                          {errors.fromDate.message}
+                        </p>
+                      )}
                     </div>
 
                     <div className="to-date width-96 ">
@@ -218,10 +244,16 @@ const LeavesComponent = () => {
                         type="date"
                         id="toDate"
                         className="width-100 leave-history-inputs"
+                        {...register("toDate", {
+                          required: "To Date is required",
+                        })}
                         name="toDate"
                         onChange={handleChange}
                         value={leaveApprovalForm.toDate}
                       />
+                      {errors.toDate && (
+                        <p className="error-message">{errors.toDate.message}</p>
+                      )}
                     </div>
                   </div>
 
@@ -229,18 +261,18 @@ const LeavesComponent = () => {
                     <label className="half-leave-label">
                       <input
                         type="checkbox"
-                        name="firstHalf"
                         className="checkbox-leave"
-                        onChange={handleChange}
+                        {...register("firstHalf")}
                         checked={leaveApprovalForm.firstHalf}
+                        onChange={handleChange}
                       />
                       <span className="ml-2">First Half</span>
                     </label>
                     <label className="half-leave-label">
                       <input
                         type="checkbox"
-                        name="secondHalf"
                         className="checkbox-leave"
+                        {...register("secondHalf")}
                         onChange={handleChange}
                         checked={leaveApprovalForm.secondHalf}
                       />
@@ -256,18 +288,20 @@ const LeavesComponent = () => {
                       placeholder="Reason"
                       id="reason"
                       className="reason-textarea"
+                      {...register("reason", {
+                        required: "Reason is required",
+                      })}
                       name="reason"
                       onChange={handleChange}
                       value={leaveApprovalForm.reason}
                     ></textarea>
+                    {errors.reason && (
+                      <p className="error-message">{errors.reason.message}</p>
+                    )}
                   </div>
 
                   <div className="align-center">
-                    <button
-                      type="button"
-                      onClick={onSubmit}
-                      className="leave-submit-btn"
-                    >
+                    <button type="submit" className="leave-submit-btn">
                       Apply
                     </button>
                   </div>

@@ -124,6 +124,8 @@ button {
 
 .close-icon-competency {
   cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
 }
 .congrats-img {
   display: flex;

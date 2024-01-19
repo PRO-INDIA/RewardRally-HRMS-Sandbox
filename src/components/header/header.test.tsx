@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/extend-expect';
 
 import { render, screen } from '@testing-library/react';
 
-import Header from './header';
+import Header from './Header';
 import React from 'react';
 
 describe('<Header />', () => {

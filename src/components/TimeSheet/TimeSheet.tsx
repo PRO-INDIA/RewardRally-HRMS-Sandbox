@@ -1,9 +1,11 @@
 import "./TimeSheet.scss";
 import React, { FC, useEffect, useState } from "react";
-import { environment } from "../../environments/environment";
+import { useForm, SubmitHandler, useWatch } from "react-hook-form";
+import { environment } from "../../Environments/environment";
 import { updateGameAction } from "@stagetheproindia/react-progamification";
 
 interface TimeSheetProps {}
+
 interface Project {
   projectName: string;
   responsibility: string;
@@ -19,6 +21,14 @@ interface TimeSheetForm {
 }
 
 const TimeSheet: FC<TimeSheetProps> = () => {
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    control,
+    formState: { errors },
+  } = useForm<TimeSheetForm>();
+
   const [isActivecongrats, setIsActivecongrats] = useState(false);
   const [timesheetForm, setTimesheetForm] = useState<TimeSheetForm>({
     projects: [
@@ -35,6 +45,8 @@ const TimeSheet: FC<TimeSheetProps> = () => {
   });
   const [currentDay, setCurrentDay] = useState<string>(getToday());
   const [updatedPoints, setPoints] = useState<number>(0);
+  const [toTalWorkingHours, setTotalWorkingHours] = useState<number>(0);
+
   const triggerGameAction = async () => {
     const res = await updateGameAction(
       environment.gamification.userId,
@@ -44,9 +56,9 @@ const TimeSheet: FC<TimeSheetProps> = () => {
     );
 
     setPoints(res.data.data.points);
-
     handleToggle();
   };
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentDay(getToday());
@@ -71,6 +83,12 @@ const TimeSheet: FC<TimeSheetProps> = () => {
     const updatedProjects: Project[] = [...timesheetForm.projects];
     updatedProjects[index][field as keyof Project] = value;
     setTimesheetForm({ projects: updatedProjects });
+
+    const mondayTotal = updatedProjects.reduce((total, project) => {
+      const mondayValue = parseInt(project.monday, 10) || 0;
+      return total + mondayValue;
+    }, 0);
+    setTotalWorkingHours(mondayTotal);
   };
 
   const addProject = () => {
@@ -90,16 +108,9 @@ const TimeSheet: FC<TimeSheetProps> = () => {
     }));
   };
 
-  const removeProject = (index: number) => {
-    const updatedProjects = [...timesheetForm.projects];
-    updatedProjects.splice(index, 1);
-    setTimesheetForm({ projects: updatedProjects });
-  };
-
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit: SubmitHandler<TimeSheetForm> = async (data) => {
     triggerGameAction();
-    console.log(timesheetForm, "timesheetForm");
+    console.log(data, "timesheetForm");
   };
 
   return (
@@ -111,13 +122,12 @@ const TimeSheet: FC<TimeSheetProps> = () => {
             <div className="title-timesheet py-3">
               THIS WEEK, 18 DEC 2023 - 22 DEC 2023
             </div>
-            <div className="navigations">
-              <div>&lt; Previous</div>
-              <div>Next &gt;</div>
-            </div>
           </div>
         </div>
-        <form className="main-container timesheet-content" onSubmit={onSubmit}>
+        <form
+          className="main-container timesheet-content"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div>
             <div className="timesheet-flex-container">
               <label className="project-title">Project</label>
@@ -134,38 +144,62 @@ const TimeSheet: FC<TimeSheetProps> = () => {
               {timesheetForm.projects.map((project, index) => (
                 <div key={index} className="project-row">
                   <div className="timesheet-flex-container">
-                    <select
-                      className="timesheet-projectname"
-                      id={`projectName-${index}`}
-                      onChange={(e) =>
-                        handleChange(index, "projectName", e.target.value)
-                      }
-                    >
-                      <option value="" disabled selected>
-                        Select
-                      </option>
-                      <option>MetLife</option>
-                      <option>Mercury Insurance</option>
-                      <option>SBI Life</option>
-                    </select>
-                    <div>
+                    <div className="error-message-display">
+                      <select
+                        className="timesheet-projectname"
+                        {...register(`projects.${index}.projectName`, {
+                          required: true,
+                        })}
+                        onBlur={(e) => {
+                          handleChange(index, "projectName", e.target.value);
+                        }}
+                      >
+                        <option value="" disabled selected>
+                          Select
+                        </option>
+                        <option>MetLife</option>
+                        <option>Mercury Insurance</option>
+                        <option>SBI Life</option>
+                      </select>
+                      <div>
+                        {errors?.projects?.[index]?.projectName && (
+                          <p className="error-message">
+                            Project Name is required
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                    <div className="error-message-display">
                       <input
                         placeholder="Task"
                         className="task-name"
                         type="text"
-                        id={`responsibility-${index}`}
-                        onChange={(e) =>
-                          handleChange(index, "responsibility", e.target.value)
-                        }
+                        {...register(`projects.${index}.responsibility`, {
+                          required: true,
+                        })}
+                        onBlur={(e) => {
+                          setValue(
+                            `projects.${index}.responsibility`,
+                            e.target.value
+                          );
+                          handleChange(index, "responsibility", e.target.value);
+                        }}
                       />
+                      <div>
+                        {errors?.projects?.[index]?.responsibility && (
+                          <p className="error-message">
+                            Responsibility is required
+                          </p>
+                        )}
+                      </div>
                     </div>
                     {daysOfWeek.map((day, dayIndex) => (
                       <div key={dayIndex}>
                         <input
                           className="timesheet-inputs-types"
-                          type="text"
-                          id={`${day.toLowerCase()}-${index}`}
-                          disabled={day !== currentDay}
+                          type="number"
+                          id={`${day.toLowerCase()}-${dayIndex}`}
+                          disabled={day.toLowerCase() !== "monday"}
                           onChange={(e) =>
                             handleChange(
                               index,
@@ -197,6 +231,23 @@ const TimeSheet: FC<TimeSheetProps> = () => {
             </button>
           </div>
         </form>
+        <div className="timesheet-total">
+          <div className="total-label"> TOTAL</div>
+          <div className="totalcount-days">
+            {daysOfWeek.map((day, dayIndex) => (
+              <div key={dayIndex}>
+                <input
+                  className="timesheet-inputs-types"
+                  type="number"
+                  value={
+                    day.toLowerCase() === "monday" ? toTalWorkingHours : ""
+                  }
+                  id={`${day.toLowerCase()}-${dayIndex}`}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
       {isActivecongrats && (
         <div className="modal-wrap">
@@ -216,7 +267,7 @@ const TimeSheet: FC<TimeSheetProps> = () => {
             </div>
             <div className="congrats-title">Congratulations!</div>
             <div className="congrats-description">
-              You have completed second step sucessfully and earned
+              You have completed second step successfully and earned
               <span className="reward-points"> {updatedPoints} </span>
               Points
             </div>

@@ -1,5 +1,5 @@
-import "./header.scss";
-import { environment } from "../../environments/environment";
+import "./Header.scss";
+import { environment } from "../../Environments/environment";
 import { FC } from "react";
 
 import { ProGamification } from "@stagetheproindia/react-progamification";
