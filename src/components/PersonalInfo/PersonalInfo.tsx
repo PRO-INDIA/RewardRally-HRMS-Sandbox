@@ -1,7 +1,9 @@
+import React from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import "./PersonalInfo.scss";
-import { environment } from "../../environments/environment";
+import { environment } from "../../Environments/environment";
 import { FC, useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import ProfileCard from "../ProfileCard/ProfileCard";
 import Wizard from "../Wizard/Wizard";
 import { updateGameAction } from "@stagetheproindia/react-progamification";
@@ -17,10 +19,19 @@ interface PersonalInfoForm {
   personalMobileNumber: string;
   pincode: string;
 }
+
 const PersonalInfo: FC = () => {
-  const [isActivecongrats, setisActivecongrats] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<PersonalInfoForm>();
+  const navigate = useNavigate();
+  const [isActiveCongrats, setisActiveCongrats] = useState(false);
   const [isActiveIntroCard, setisActiveIntroCard] = useState(true);
   const [updatedPoints, setPoints] = useState<number>(0);
+
   const [personalInfoForm, setPersonalInfoForm] = useState<PersonalInfoForm>(
     () => {
       const storedData = sessionStorage.getItem("personalInfoForm");
@@ -52,7 +63,9 @@ const PersonalInfo: FC = () => {
       ...prevForm,
       [field]: value,
     }));
+    setValue(field, value);
   };
+
   const triggerGameAction = async () => {
     const res = await updateGameAction(
       environment.gamification.userId,
@@ -65,17 +78,17 @@ const PersonalInfo: FC = () => {
 
     handleToggleIsCongrats();
   };
-  const handleSubmit = async () => {
-    await triggerGameAction();
 
-    sessionStorage.setItem(
-      "personalInfoForm",
-      JSON.stringify(personalInfoForm)
-    );
+  const handleSubmitForm: SubmitHandler<PersonalInfoForm> = async (data) => {
+    await triggerGameAction();
+    sessionStorage.setItem("personalInfoForm", JSON.stringify(data));
   };
+
   const handleToggleIsCongrats = () => {
-    setisActivecongrats(!isActivecongrats);
+    setisActiveCongrats(!isActiveCongrats);
+
   };
+
   const handleToggleIsIntro = () => {
     setisActiveIntroCard(!isActiveIntroCard);
   };
@@ -87,9 +100,9 @@ const PersonalInfo: FC = () => {
           <div className="modal-content text-center">
             <div className="congrats-title">Help us know you better!</div>
             <div className="congrats-description">
-              Complete onboarding process within 2 days and earn
-              <span className="reward-points"> 50 points </span>
-              for each step!
+              Finish the onboarding process and receive
+              <span className="reward-points"> points </span>
+              for each completed step!
             </div>
             <div className="submit-container">
               <button
@@ -103,7 +116,7 @@ const PersonalInfo: FC = () => {
           </div>
         </div>
       )}
-      {isActivecongrats && (
+      {isActiveCongrats && (
         <div className="modal-wrap">
           <div className="modal-content">
             <div
@@ -124,7 +137,7 @@ const PersonalInfo: FC = () => {
             </div>
             <div className="congrats-title">Congratulations!</div>
             <div className="congrats-description">
-              You have completed second step sucessfully and earned
+              You have completed second step successfully and earned
               <span className="reward-points"> {updatedPoints} </span>
               Points
             </div>
@@ -134,7 +147,7 @@ const PersonalInfo: FC = () => {
       <ProfileCard />
       <div className="form-container main-container">
         <Wizard />
-        <form>
+        <form onSubmit={handleSubmit(handleSubmitForm)}>
           <div>
             <div className="flex-container-profile-info">
               <div>
@@ -142,16 +155,25 @@ const PersonalInfo: FC = () => {
                 <input
                   type="text"
                   placeholder="Full Name"
-                  value={personalInfoForm.fullName}
-                  onChange={(e) => handleChange("fullName", e.target.value)}
+                  defaultValue={personalInfoForm.fullName}
+                  {...register("fullName", {
+                    required: "Name is required",
+                  })}
+                  onBlur={(e) => handleChange("fullName", e.target.value)}
                   className="input-style-personal-info"
                 />
+                {errors.fullName && (
+                  <p className="error-message">{errors.fullName.message}</p>
+                )}
               </div>
               <div>
                 <label className="label-style-personal-info">Blood Group</label>
                 <select
-                  value={personalInfoForm.bloodGroup}
-                  onChange={(e) => handleChange("bloodGroup", e.target.value)}
+                  defaultValue={personalInfoForm.bloodGroup}
+                  {...register("bloodGroup", {
+                    required: "Blood group is required",
+                  })}
+                  onBlur={(e) => handleChange("bloodGroup", e.target.value)}
                   className="input-personal-info"
                 >
                   <option value="" disabled selected>
@@ -166,6 +188,9 @@ const PersonalInfo: FC = () => {
                   <option value="O+">O+</option>
                   <option value="O-">O-</option>
                 </select>
+                {errors.bloodGroup && (
+                  <p className="error-message">{errors.bloodGroup.message}</p>
+                )}
               </div>
               <div>
                 <label className="label-style-personal-info">
@@ -174,12 +199,18 @@ const PersonalInfo: FC = () => {
                 <input
                   type="text"
                   placeholder="Contact Address"
-                  value={personalInfoForm.contactAddress}
-                  onChange={(e) =>
-                    handleChange("contactAddress", e.target.value)
-                  }
+                  defaultValue={personalInfoForm.contactAddress}
+                  {...register("contactAddress", {
+                    required: "Address is required",
+                  })}
+                  onBlur={(e) => handleChange("contactAddress", e.target.value)}
                   className="input-style-personal-info"
                 />
+                {errors.contactAddress && (
+                  <p className="error-message">
+                    {errors.contactAddress.message}
+                  </p>
+                )}
               </div>
             </div>
             <div className="flex-container-profile-info">
@@ -189,10 +220,16 @@ const PersonalInfo: FC = () => {
                 </label>
                 <input
                   type="date"
-                  value={personalInfoForm.dateOfBirth}
-                  onChange={(e) => handleChange("dateOfBirth", e.target.value)}
+                  defaultValue={personalInfoForm.dateOfBirth}
+                  {...register("dateOfBirth", {
+                    required: "DOB is rquired",
+                  })}
+                  onBlur={(e) => handleChange("dateOfBirth", e.target.value)}
                   className="input-style-personal-info"
                 />
+                {errors.dateOfBirth && (
+                  <p className="error-message">{errors.dateOfBirth.message}</p>
+                )}
               </div>
               <div>
                 <label className="label-style-personal-info">
@@ -201,19 +238,32 @@ const PersonalInfo: FC = () => {
                 <input
                   type="text"
                   placeholder="Personal Email"
-                  value={personalInfoForm.personalEmail}
-                  onChange={(e) =>
-                    handleChange("personalEmail", e.target.value)
-                  }
+                  defaultValue={personalInfoForm.personalEmail}
+                  {...register("personalEmail", {
+                    required: "Personal email is required",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                      message: "Invalid email address",
+                    },
+                  })}
+                  onBlur={(e) => handleChange("personalEmail", e.target.value)}
                   className="input-style-personal-info"
                 />
+                {errors.personalEmail && (
+                  <p className="error-message">
+                    {errors.personalEmail.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="label-style-personal-info">State</label>
                 <select
-                  value={personalInfoForm.state}
-                  onChange={(e) => handleChange("state", e.target.value)}
+                  defaultValue={personalInfoForm.state}
+                  {...register("state", {
+                    required: "State is required",
+                  })}
                   className="input-personal-info"
+                  onBlur={(e) => handleChange("state", e.target.value)}
                 >
                   <option value="" disabled selected>
                     Select
@@ -257,6 +307,9 @@ const PersonalInfo: FC = () => {
                   <option value="Jammu and Kashmir">Jammu and Kashmir</option>
                   <option value="Ladakh">Ladakh</option>
                 </select>
+                {errors.state && (
+                  <p className="error-message">{errors.state.message}</p>
+                )}
               </div>
             </div>
             <div className="flex-container-profile-info">
@@ -265,10 +318,16 @@ const PersonalInfo: FC = () => {
                 <input
                   type="text"
                   placeholder="Father Name"
-                  value={personalInfoForm.fatherName}
-                  onChange={(e) => handleChange("fatherName", e.target.value)}
+                  defaultValue={personalInfoForm.fatherName}
+                  {...register("fatherName", {
+                    required: "Father's name is required",
+                  })}
+                  onBlur={(e) => handleChange("fatherName", e.target.value)}
                   className="input-style-personal-info"
                 />
+                {errors.fatherName && (
+                  <p className="error-message">{errors.fatherName.message}</p>
+                )}
               </div>
               <div>
                 <label className="label-style-personal-info">
@@ -277,31 +336,49 @@ const PersonalInfo: FC = () => {
                 <input
                   type="text"
                   placeholder="Personal Mobile Number"
-                  value={personalInfoForm.personalMobileNumber}
-                  onChange={(e) =>
+                  defaultValue={personalInfoForm.personalMobileNumber}
+                  {...register("personalMobileNumber", {
+                    required: "Phone number is required",
+                    pattern: {
+                      value: /^[0-9]{10}$/,
+                      message: "Invalid mobile number",
+                    },
+                  })}
+                  onBlur={(e) =>
                     handleChange("personalMobileNumber", e.target.value)
                   }
                   className="input-style-personal-info"
                 />
+                {errors.personalMobileNumber && (
+                  <p className="error-message">
+                    {errors.personalMobileNumber.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="label-style-personal-info">Pincode</label>
                 <input
                   type="text"
                   placeholder="Pincode"
-                  value={personalInfoForm.pincode}
-                  onChange={(e) => handleChange("pincode", e.target.value)}
+                  defaultValue={personalInfoForm.pincode}
+                  {...register("pincode", {
+                    required: "Pincode is required",
+                    pattern: {
+                      value: /^[1-9][0-9]{5}$/,
+                      message: "Invalid pincode",
+                    },
+                  })}
+                  onBlur={(e) => handleChange("pincode", e.target.value)}
                   className="input-style-personal-info"
                 />
+                {errors.pincode && (
+                  <p className="error-message">{errors.pincode.message}</p>
+                )}
               </div>
             </div>
           </div>
           <div className="submit-container">
-            <button
-              type="button"
-              onClick={handleSubmit}
-              className="submit-button"
-            >
+            <button type="submit" className="submit-button">
               Submit
             </button>
           </div>

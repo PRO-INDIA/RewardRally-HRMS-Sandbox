@@ -1,11 +1,12 @@
+import React from "react";
+import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import "./WorkHistroy.scss";
 import { FC, useState } from "react";
-import { environment } from "../../environments/environment";
+import { environment } from "../../Environments/environment";
 import ProfileCard from "../ProfileCard/ProfileCard";
 import Wizard from "../Wizard/Wizard";
 import { updateGameAction } from "@stagetheproindia/react-progamification";
 
-interface WorkHistroyProps {}
 interface WorkHistory {
   companyName: string;
   durationFrom: string;
@@ -17,27 +18,29 @@ interface WorkHistroyForm {
   workHistories: WorkHistory[];
 }
 
-const WorkHistroy: FC<WorkHistroyProps> = () => {
+const WorkHistroy: FC = () => {
   const [isActivecongrats, setisActivecongrats] = useState(false);
   const [updatedPoints, setPoints] = useState<number>(0);
 
-  const [workHistroyForm, setworkHistroyForm] = useState<WorkHistroyForm>(
-    () => {
-      const storedData = sessionStorage.getItem("workHistroyForm");
-      return storedData
-        ? JSON.parse(storedData)
-        : {
-            workHistories: [
-              {
-                companyName: "",
-                durationFrom: "",
-                durationTo: "",
-                certificate: "",
-              },
-            ],
-          };
-    }
-  );
+  const {
+    control,
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<WorkHistroyForm>({
+    defaultValues: {
+      workHistories: [
+        { companyName: "", durationFrom: "", durationTo: "", certificate: "" },
+      ],
+    },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "workHistories",
+  });
+
   const triggerGameAction = async () => {
     const res = await updateGameAction(
       environment.gamification.userId,
@@ -47,40 +50,37 @@ const WorkHistroy: FC<WorkHistroyProps> = () => {
     );
 
     setPoints(res.data.data.points);
-
     handleToggle();
   };
+
   const handleToggle = () => {
     setisActivecongrats(!isActivecongrats);
   };
 
-  const handleChange = (index: number, field: string, value: string) => {
-    const updatedworkHistories: WorkHistory[] = [
-      ...workHistroyForm.workHistories,
-    ];
-    updatedworkHistories[index][field as keyof WorkHistory] = value;
-    setworkHistroyForm({ workHistories: updatedworkHistories });
+  const handleChange = (
+    index: number,
+    field: keyof WorkHistory,
+    value: string
+  ) => {
+    setValue(`workHistories.${index}.${field}`, value);
   };
 
-  const addCompetency = () => {
-    setworkHistroyForm((prevForm: WorkHistroyForm) => ({
-      workHistories: [
-        ...prevForm.workHistories,
-        { companyName: "", durationFrom: "", durationTo: "", certificate: "" },
-      ],
-    }));
+  const addWorkHistory = () => {
+    append({
+      companyName: "",
+      durationFrom: "",
+      durationTo: "",
+      certificate: "",
+    });
   };
 
-  const removeCompetency = (index: number) => {
-    const updatedworkHistories = [...workHistroyForm.workHistories];
-    updatedworkHistories.splice(index, 1);
-    setworkHistroyForm({ workHistories: updatedworkHistories });
+  const removeWorkHistory = (index: number) => {
+    remove(index);
   };
 
-  const handleSubmit = () => {
+  const onSubmit: SubmitHandler<WorkHistroyForm> = (data) => {
     triggerGameAction();
-
-    sessionStorage.setItem("workHistroyForm", JSON.stringify(workHistroyForm));
+    sessionStorage.setItem("workHistroyForm", JSON.stringify(data));
   };
 
   return (
@@ -103,7 +103,7 @@ const WorkHistroy: FC<WorkHistroyProps> = () => {
             </div>
             <div className="congrats-title">Congratulations!</div>
             <div className="congrats-description">
-              You have completed second step sucessfully and earned
+              You have completed the second step successfully and earned
               <span className="reward-points"> {updatedPoints} </span>
               Points
             </div>
@@ -113,86 +113,103 @@ const WorkHistroy: FC<WorkHistroyProps> = () => {
       <ProfileCard />
       <div className="form-container main-container">
         <Wizard />
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <div>
-              {workHistroyForm.workHistories.map(
-                (workHistory: WorkHistory, index: number) => (
-                  <div key={index}>
-                    <div className="flex-container">
-                      <div>
-                        <label className="label-style">Company Name</label>
-                        <input
-                          type="text"
-                          placeholder="Company Name"
-                          value={workHistory.companyName}
-                          onChange={(e) =>
-                            handleChange(index, "companyName", e.target.value)
-                          }
-                          className="input-style-competency "
-                        />
-                      </div>
-                      <div>
-                        <label className="label-style">
-                          Relieving Certificate
-                        </label>
-                        <input
-                          type="file"
-                          id="certificate"
-                          onChange={(e) =>
-                            handleChange(index, "certificate", e.target.value)
-                          }
-                          className="input-style-competency "
-                        />
-                      </div>
+              {fields.map((workHistory: WorkHistory, index: number) => (
+                <div key={index}>
+                  <div className="flex-container">
+                    <div>
+                      <label className="label-style">Company Name</label>
+                      <input
+                        type="text"
+                        placeholder="Company Name"
+                        {...register(`workHistories.${index}.companyName`, {
+                          required: "This field is required",
+                        })}
+                        className="input-style-competency"
+                      />
+                      {errors?.workHistories?.[index]?.companyName && (
+                        <p className="error-message">
+                          {errors.workHistories[index]?.companyName?.message ||
+                            ""}
+                        </p>
+                      )}
                     </div>
-                    <div className="flex-container">
-                      <div>
-                        <label className="label-style">Duration From</label>
-                        <input
-                          type="date"
-                          value={workHistory.durationFrom}
-                          onChange={(e) =>
-                            handleChange(index, "durationFrom", e.target.value)
-                          }
-                          className="input-style-competency "
-                        />
-                      </div>
-                      <div>
-                        <label className="label-style">Duration To</label>
-                        <input
-                          type="date"
-                          value={workHistory.durationTo}
-                          onChange={(e) =>
-                            handleChange(index, "durationTo", e.target.value)
-                          }
-                          className="input-style-competency "
-                        />
-                      </div>
+                    <div>
+                      <label className="label-style">
+                        Relieving Certificate
+                      </label>
+                      <input
+                        type="file"
+                        id={`certificate${index}`}
+                        {...register(`workHistories.${index}.certificate`, {
+                          required: "This field is required",
+                        })}
+                        className="input-style-competency"
+                      />
+                      {errors?.workHistories?.[index]?.certificate && (
+                        <p className="error-message">
+                          {errors.workHistories[index]?.certificate?.message ||
+                            ""}
+                        </p>
+                      )}
                     </div>
-                    {workHistroyForm.workHistories.length > 1 && (
+                  </div>
+                  <div className="flex-container">
+                    <div>
+                      <label className="label-style">Duration From</label>
+                      <input
+                        type="date"
+                        {...register(`workHistories.${index}.durationFrom`, {
+                          required: "This field is required",
+                        })}
+                        className="input-style-competency"
+                      />
+                      {errors?.workHistories?.[index]?.durationFrom && (
+                        <p className="error-message">
+                          {errors.workHistories[index]?.durationFrom?.message ||
+                            ""}
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      <label className="label-style">Duration To</label>
+                      <input
+                        type="date"
+                        {...register(`workHistories.${index}.durationTo`, {
+                          required: "This field is required",
+                        })}
+                        className="input-style-competency"
+                      />
+                      {errors?.workHistories?.[index]?.durationTo && (
+                        <p className="error-message">
+                          {errors.workHistories[index]?.durationTo?.message ||
+                            ""}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    {fields.length > 1 && (
                       <button
                         type="button"
-                        onClick={() => removeCompetency(index)}
+                        onClick={() => removeWorkHistory(index)}
                         className="remove-button"
                       >
                         Remove
                       </button>
                     )}
                   </div>
-                )
-              )}
+                </div>
+              ))}
             </div>
           </div>
-          <button type="button" onClick={addCompetency} className="add-button">
+          <button type="button" onClick={addWorkHistory} className="add-button">
             + Add
           </button>
           <div className="submit-container">
-            <button
-              type="button"
-              onClick={handleSubmit}
-              className="submit-button"
-            >
+            <button type="submit" className="submit-button">
               Update
             </button>
           </div>
