@@ -77,7 +77,7 @@ const LeavesComponent = () => {
             </div>
             <div className="congrats-title">Congratulations!</div>
             <div className="congrats-description">
-              You have completed the second step successfully and earned
+              Your Leave has been applied successfully and earned
               <span className="reward-points"> {updatedPoints} </span>
               Points
             </div>
