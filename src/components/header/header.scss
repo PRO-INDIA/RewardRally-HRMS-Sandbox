@@ -1,0 +1,25 @@
+header {
+  display: flex;
+  position: relative;
+  align-items: center;
+  height: 4em;
+  .logo {
+    width: 3.7em;
+    height: 3.7em;
+  }
+  .logo-name {
+    color: rgb(44 138 206);
+    display: flex;
+    width: 15rem;
+    align-items: center;
+    span {
+      font-size: 1.3em;
+      font-weight: 500;
+    }
+  }
+}
+.gamification-package {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
