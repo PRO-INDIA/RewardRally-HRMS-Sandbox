@@ -46,6 +46,19 @@ const TimeSheet: FC<TimeSheetProps> = () => {
     ],
   });
   const [currentDay, setCurrentDay] = useState<string>(getToday());
+  const [currentWeek, setCurrentWeek] = useState('');
+
+  useEffect(() => {
+    const currentDate = new Date();
+    const startDate = new Date(currentDate);
+    startDate.setDate(currentDate.getDate() - currentDate.getDay() + (currentDate.getDay() === 0 ? -6 : 1));
+    const endDate = new Date(startDate);
+    endDate.setDate(startDate.getDate() + 4);
+    const formattedStartDate = `${startDate.getDate()} ${startDate.toLocaleString('default', { month: 'short' })} ${startDate.getFullYear()}`;
+    const formattedEndDate = `${endDate.getDate()} ${endDate.toLocaleString('default', { month: 'short' })} ${endDate.getFullYear()}`;
+    const currentWeekString = `THIS WEEK, ${formattedStartDate} - ${formattedEndDate}`;
+    setCurrentWeek(currentWeekString);
+  }, []);
   const [updatedPoints, setPoints] = useState<number>(0);
   const [toTalWorkingHours, setTotalWorkingHours] = useState<number>(0);
 
@@ -121,7 +134,7 @@ const TimeSheet: FC<TimeSheetProps> = () => {
           <div className="timesheet-header py-3">Time Sheet - Weekly</div>
           <div className="navigate-actions-timesheet">
             <div className="title-timesheet py-3">
-              THIS WEEK, 18 DEC 2023 - 22 DEC 2023
+            {currentWeek}
             </div>
           </div>
         </div>
@@ -198,7 +211,8 @@ const TimeSheet: FC<TimeSheetProps> = () => {
                       <div key={dayIndex}>
                         <input
                           className="timesheet-inputs-types"
-                          type="number"
+                          type="text"
+                          step="0.01" 
                           id={`${day.toLowerCase()}-${dayIndex}`}
                           disabled={day.toLowerCase() !== "monday"}
                           onChange={(e) =>
