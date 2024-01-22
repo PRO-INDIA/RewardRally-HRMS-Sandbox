@@ -88,7 +88,6 @@ const PersonalInfo: FC = () => {
 
   const handleToggleIsCongrats = () => {
     setisActiveCongrats(!isActiveCongrats);
-
   };
 
   const handleToggleIsIntro = () => {
@@ -139,7 +138,8 @@ const PersonalInfo: FC = () => {
             </div>
             <div className="congrats-title">Congratulations!</div>
             <div className="congrats-description">
-              You have completed second step successfully and earned
+              You have successfully completed the first step of user profile and
+              earned
               <span className="reward-points"> {updatedPoints} </span>
               Points
             </div>

@@ -71,31 +71,32 @@ const CompetencyComponent: FC = () => {
 
 	return (
 		<div className="competency">
-			{isActivecongrats && (
-				<div className="modal-wrap">
-					<div className="modalcontent text-center">
-						<div className="close-icon-competency" onClick={handleToggle}>
-							<img
-								src="../../../assets/images/close.svg"
-								className="cursor-pointer"
-								alt="closeIcon"
-							/>
-						</div>
-						<div className="congrats-img">
-							<img
-								src="../../../assets/images/congragulations.svg"
-								alt="popup"
-							/>
-						</div>
-						<div className="congrats-title">Congratulations!</div>
-						<div className="congrats-description">
-							You have completed the second step successfully and earned
-							<span className="reward-points"> {updatedPoints} </span>
-							Points
-						</div>
-					</div>
-				</div>
-			)}
+		 {isActivecongrats && (
+        <div className="modal-wrap">
+          <div className="modal-content text-center">
+            <div className="close-icon-competency" onClick={handleToggle}>
+              <img
+                src="../../../assets/images/close.svg"
+                className="cursor-pointer"
+                alt="closeIcon"
+              />
+            </div>
+            <div className="congrats-img">
+              <img
+                src="../../../assets/images/congragulations.svg"
+                alt="popup"
+              />
+            </div>
+            <div className="congrats-title">Congratulations!</div>
+            <div className="congrats-description">
+              You have successfully completed the second step of user profile and
+              earned
+              <span className="reward-points"> {updatedPoints} </span>
+              Points
+            </div>
+          </div>
+        </div>
+      )}
 			<ProfileCard />
 			<div className="form-container main-container">
 				<Wizard />

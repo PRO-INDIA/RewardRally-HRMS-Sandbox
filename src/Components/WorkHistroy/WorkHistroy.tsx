@@ -88,30 +88,31 @@ const WorkHistroy: FC = () => {
 	return (
 		<div className="competency">
 			{isActivecongrats && (
-				<div className="modal-wrap">
-					<div className="modalcontent text-center">
-						<div onClick={handleToggle} className="close-icon-competency">
-							<img
-								src="../../../assets/images/close.svg"
-								className="cursor-pointer"
-								alt="closeIcon"
-							/>
-						</div>
-						<div className="congrats-img">
-							<img
-								src="../../../assets/images/congragulations.svg"
-								alt="popup"
-							/>
-						</div>
-						<div className="congrats-title">Congratulations!</div>
-						<div className="congrats-description">
-							You have completed the second step successfully and earned
-							<span className="reward-points"> {updatedPoints} </span>
-							Points
-						</div>
-					</div>
-				</div>
-			)}
+        <div className="modal-wrap">
+          <div className="modal-content text-center">
+            <div onClick={handleToggle} className="close-icon-competency">
+              <img
+                src="../../../assets/images/close.svg"
+                className="cursor-pointer"
+                alt="closeIcon"
+              />
+            </div>
+            <div className="congrats-img">
+              <img
+                src="../../../assets/images/congragulations.svg"
+                alt="popup"
+              />
+            </div>
+            <div className="congrats-title">Congratulations!</div>
+            <div className="congrats-description">
+              You have successfully completed the third step of user profile and
+              earned
+              <span className="reward-points"> {updatedPoints} </span>
+              Points
+            </div>
+          </div>
+        </div>
+      )}
 			<ProfileCard />
 			<div className="form-container main-container">
 				<Wizard />

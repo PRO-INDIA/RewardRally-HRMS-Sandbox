@@ -282,7 +282,7 @@ const TimeSheet: FC<TimeSheetProps> = () => {
             </div>
             <div className="congrats-title">Congratulations!</div>
             <div className="congrats-description">
-              You have completed second step successfully and earned
+            You have successfully completed the time sheet and earned
               <span className="reward-points"> {updatedPoints} </span>
               Points
             </div>
