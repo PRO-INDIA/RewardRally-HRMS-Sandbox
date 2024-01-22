@@ -1,8 +1,5 @@
 import "./App.css";
-
-import Layout from "./layout/Layout/Layout";
-import React from "react";
-import logo from "./logo.svg";
+import Layout from "./Layout/Layout/Layout";
 
 function App() {
 	return (

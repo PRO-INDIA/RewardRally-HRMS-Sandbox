@@ -1,0 +1,68 @@
+import { MainMenu, MenuList } from "../Models/SideBarMenuList.model";
+
+export const sidebarMenuLists: MenuList[] = [
+	{
+		menuId: MainMenu.Info,
+		label: "",
+		imageUrl: "../assets/images/dashboard_icon.svg",
+		activeImageUrl: "../assets/images/dashboard_icon.svg",
+		alt: "Home",
+		isActive: false,
+		subItem: [],
+	},
+	{
+		menuId: MainMenu.Info,
+		label: "information/personal-info",
+		imageUrl: "../assets/images/user.svg",
+		activeImageUrl: "../assets/images/user.svg",
+		alt: "onboarding",
+		isActive: false,
+		subItem: [],
+	},
+
+	{
+		menuId: MainMenu.TimeSheet,
+		label: "time-sheet",
+		imageUrl: "../assets/images/timesheet_icon.svg",
+		activeImageUrl: "../assets/images/timesheet_icon.svg",
+		alt: "Home",
+		isActive: false,
+		subItem: [],
+	},
+	{
+		menuId: MainMenu.Leave,
+		label: "leaves",
+		imageUrl: "../assets/images/leavemgmt_icon.svg",
+		activeImageUrl: "../assets/images/leavemgmt_icon.svg",
+		alt: "onboarding",
+		isActive: false,
+		subItem: [],
+	},
+	{
+		menuId: MainMenu.Leave,
+		label: "",
+		imageUrl: "../assets/images/organization_icon.svg",
+		activeImageUrl: "../assets/images/organization_icon.svg",
+		alt: "Home",
+		isActive: false,
+		subItem: [],
+	},
+	{
+		menuId: MainMenu.Leave,
+		label: "",
+		imageUrl: "../assets/images/goal_icon.svg",
+		activeImageUrl: "../assets/images/goal_icon.svg",
+		alt: "Home",
+		isActive: false,
+		subItem: [],
+	},
+	{
+		menuId: MainMenu.TimeSheet,
+		label: "",
+		imageUrl: "../assets/images/refer_icon.svg",
+		activeImageUrl: "../assets/images/refer_icon.svg",
+		alt: "Home",
+		isActive: false,
+		subItem: [],
+	},
+];
