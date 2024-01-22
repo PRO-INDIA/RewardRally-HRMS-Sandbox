@@ -20,22 +20,6 @@ const LeavesComponent = () => {
     formState: { errors },
   } = useForm<LeaveApprovalForm>();
 
-  const [leaveApprovalForm, setLeaveApprovalForm] = useState<LeaveApprovalForm>(
-    () => {
-      const storedData = sessionStorage.getItem("leaveApprovalForm");
-      return storedData
-        ? JSON.parse(storedData)
-        : {
-            leaveType: "",
-            fromDate: "",
-            toDate: "",
-            firstHalf: false,
-            secondHalf: false,
-            reason: "",
-          };
-    }
-  );
-
   const [showLeaveApply, setShowLeaveApply] = useState(false);
   const [isActivecongrats, setIsActivecongrats] = useState(false);
   const [updatedPoints, setPoints] = useState<number>(0);
@@ -52,38 +36,21 @@ const LeavesComponent = () => {
     handleToggle();
   };
 
-  const onSubmit = async () => {
+  const onSubmit = async (data: LeaveApprovalForm) => {
     setPoints(0);
     setShowLeaveApply(true);
-    if (
-      leaveApprovalForm.leaveType &&
-      leaveApprovalForm.fromDate &&
-      leaveApprovalForm.toDate &&
-      leaveApprovalForm.reason
-    ) {
-      if (leaveApprovalForm.leaveType === "casual") {
+
+    if (data.leaveType) {
+      if (data.leaveType === "casual") {
         await triggerGameAction(environment.gamification.casualLeaveAction);
-      } else if (leaveApprovalForm.leaveType === "earned") {
+      } else if (data.leaveType === "earned") {
         await triggerGameAction(environment.gamification.earnedLeaveAction);
       }
     }
-
-    sessionStorage.setItem(
-      "leaveApprovalForm",
-      JSON.stringify(leaveApprovalForm)
-    );
   };
 
   const toggleLeaveApply = () => {
     setShowLeaveApply(!showLeaveApply);
-  };
-
-  const handleChange = (e: any) => {
-    const { name, value, type, checked } = e.target;
-    setLeaveApprovalForm((prevForm) => ({
-      ...prevForm,
-      [name]: type === "checkbox" ? checked : value,
-    }));
   };
 
   const handleToggle = () => {
@@ -193,11 +160,8 @@ const LeavesComponent = () => {
                       {...register("leaveType", {
                         required: "Leave type is required",
                       })}
-                      name="leaveType"
-                      onChange={handleChange}
-                      value={leaveApprovalForm.leaveType}
                     >
-                      <option value="" disabled>
+                      <option value="" selected disabled>
                         Select Leave Type
                       </option>
                       <option value="sick">Sick Leave</option>
@@ -223,9 +187,6 @@ const LeavesComponent = () => {
                         {...register("fromDate", {
                           required: "From Date is required",
                         })}
-                        name="fromDate"
-                        onChange={handleChange}
-                        value={leaveApprovalForm.fromDate}
                       />
                       {errors.fromDate && (
                         <p className="error-message">
@@ -234,7 +195,7 @@ const LeavesComponent = () => {
                       )}
                     </div>
 
-                    <div className="to-date width-96 ">
+                    <div className="to-date width-96">
                       <label htmlFor="toDate" className="leave-type-label">
                         To Date
                       </label>
@@ -245,9 +206,6 @@ const LeavesComponent = () => {
                         {...register("toDate", {
                           required: "To Date is required",
                         })}
-                        name="toDate"
-                        onChange={handleChange}
-                        value={leaveApprovalForm.toDate}
                       />
                       {errors.toDate && (
                         <p className="error-message">{errors.toDate.message}</p>
@@ -261,8 +219,6 @@ const LeavesComponent = () => {
                         type="checkbox"
                         className="checkbox-leave"
                         {...register("firstHalf")}
-                        checked={leaveApprovalForm.firstHalf}
-                        onChange={handleChange}
                       />
                       <span className="ml-2">First Half</span>
                     </label>
@@ -271,8 +227,6 @@ const LeavesComponent = () => {
                         type="checkbox"
                         className="checkbox-leave"
                         {...register("secondHalf")}
-                        onChange={handleChange}
-                        checked={leaveApprovalForm.secondHalf}
                       />
                       <span className="ml-2">Second Half</span>
                     </label>
@@ -289,9 +243,6 @@ const LeavesComponent = () => {
                       {...register("reason", {
                         required: "Reason is required",
                       })}
-                      name="reason"
-                      onChange={handleChange}
-                      value={leaveApprovalForm.reason}
                     ></textarea>
                     {errors.reason && (
                       <p className="error-message">{errors.reason.message}</p>
