@@ -1,8 +1,10 @@
 import "./TimeSheet.scss";
+
 import React, { FC, useEffect, useState } from "react";
-import { useForm, SubmitHandler, useWatch } from "react-hook-form";
-import { updateGameAction } from "@stagetheproindia/react-progamification";
+import { SubmitHandler, useForm, useWatch } from "react-hook-form";
+
 import { environment } from "../../Environments/Environment";
+import { updateGameAction } from "@stagetheproindia/react-progamification";
 
 interface TimeSheetProps {}
 
@@ -264,7 +266,7 @@ const TimeSheet: FC<TimeSheetProps> = () => {
       </div>
       {isActivecongrats && (
         <div className="modal-wrap">
-          <div className="modal-content text-center">
+          <div className="modalcontent text-center">
             <div onClick={handleToggle} className="close-icon-competency">
               <img
                 src="../../../assets/images/close.svg"
