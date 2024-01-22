@@ -101,7 +101,7 @@ const PersonalInfo: FC = () => {
           <div className="modalcontent text-center">
             <div className="congrats-title">Help us know you better!</div>
             <div className="congrats-description">
-              Finish the onboarding process and receive
+              Finish the onboarding process and accumulate 
               <span className="reward-points"> points </span>
               for each completed step!
             </div>

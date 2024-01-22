@@ -105,7 +105,7 @@ const WorkHistroy: FC = () => {
             </div>
             <div className="congrats-title">Congratulations!</div>
             <div className="congrats-description">
-              You have successfully completed the third step of user profile and
+              You have successfully completed the final step of user profile and
               earned
               <span className="reward-points"> {updatedPoints} </span>
               Points
@@ -146,17 +146,10 @@ const WorkHistroy: FC = () => {
 											<input
 												type="file"
 												id={`certificate${index}`}
-												{...register(`workHistories.${index}.certificate`, {
-													required: "This field is required",
-												})}
+												{...register(`workHistories.${index}.certificate`)}
 												className="input-style-competency"
 											/>
-											{errors?.workHistories?.[index]?.certificate && (
-												<p className="error-message">
-													{errors.workHistories[index]?.certificate?.message ||
-														""}
-												</p>
-											)}
+
 										</div>
 									</div>
 									<div className="flex-container">
