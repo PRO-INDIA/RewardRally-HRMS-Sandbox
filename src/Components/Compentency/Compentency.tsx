@@ -73,7 +73,7 @@ const CompetencyComponent: FC = () => {
     <div className="competency">
       {isActivecongrats && (
         <div className="modal-wrap">
-          <div className="modal-content text-center">
+          <div className="modalcontent text-center">
             <div className="close-icon-competency" onClick={handleToggle}>
               <img
                 src="../../../assets/images/close.svg"

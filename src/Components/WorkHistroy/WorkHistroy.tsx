@@ -89,7 +89,7 @@ const WorkHistroy: FC = () => {
 		<div className="competency">
 			{isActivecongrats && (
         <div className="modal-wrap">
-          <div className="modal-content text-center">
+          <div className="modalcontent text-center">
             <div onClick={handleToggle} className="close-icon-competency">
               <img
                 src="../../../assets/images/close.svg"
@@ -121,7 +121,7 @@ const WorkHistroy: FC = () => {
 						<div>
 							{fields.map((workHistory: WorkHistory, index: number) => (
 								<div key={index}>
-									<div className="flex-container">
+									<div className="flexcontainer">
 										<div>
 											<label className="label-style">Company Name</label>
 											<input
@@ -152,7 +152,7 @@ const WorkHistroy: FC = () => {
 
 										</div>
 									</div>
-									<div className="flex-container">
+									<div className="flexcontainer">
 										<div>
 											<label className="label-style">Duration From</label>
 											<input
