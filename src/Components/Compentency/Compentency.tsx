@@ -102,7 +102,7 @@ const CompetencyComponent: FC = () => {
             <div>
               {fields.map((competency: Competency, index: number) => (
                 <div key={index}>
-                  <div className="flex-container">
+                  <div className="flex">
                     <div>
                       <label className="label-style">Degree Name</label>
                       <input
@@ -138,7 +138,7 @@ const CompetencyComponent: FC = () => {
                       )}
                     </div>
                   </div>
-                  <div className="flex-container">
+                  <div className="flex">
                     <div>
                       <label className="label-style">Duration From</label>
                       <input
