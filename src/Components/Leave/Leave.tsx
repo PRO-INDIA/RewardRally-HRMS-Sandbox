@@ -1,8 +1,10 @@
-import { updateGameAction } from "@stagetheproindia/react-progamification";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import "./Leave.scss";
+
+import React, { useState } from "react";
+
 import { environment } from "../../Environments/Environment";
+import { updateGameAction } from "@stagetheproindia/react-progamification";
+import { useForm } from "react-hook-form";
 
 interface LeaveApprovalForm {
   leaveType: string;
@@ -94,7 +96,7 @@ const LeavesComponent = () => {
     <div>
       {isActivecongrats && (
         <div className="modal-wrap">
-          <div className="modal-content text-center">
+          <div className="modalcontent text-center">
             <div onClick={handleToggle} className="close-icon-competency">
               <img
                 src="../../../assets/images/close.svg"
