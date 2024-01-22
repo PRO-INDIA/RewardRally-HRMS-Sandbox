@@ -138,7 +138,7 @@ const PersonalInfo: FC = () => {
             </div>
             <div className="congrats-title">Congratulations!</div>
             <div className="congrats-description">
-              You have successfully completed the first step of user profile and
+              You have successfully completed the first step for user profile and
               earned
               <span className="reward-points"> {updatedPoints} </span>
               Points
