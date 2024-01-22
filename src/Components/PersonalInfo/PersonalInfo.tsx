@@ -1,12 +1,14 @@
-import React from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
 import "./PersonalInfo.scss";
+
 import { FC, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { SubmitHandler, useForm } from "react-hook-form";
+
 import ProfileCard from "../ProfileCard/ProfileCard";
+import React from "react";
 import Wizard from "../Wizard/Wizard";
-import { updateGameAction } from "@stagetheproindia/react-progamification";
 import { environment } from "../../Environments/Environment";
+import { updateGameAction } from "@stagetheproindia/react-progamification";
+import { useNavigate } from "react-router-dom";
 
 interface PersonalInfoForm {
   fullName: string;
@@ -97,7 +99,7 @@ const PersonalInfo: FC = () => {
     <div className="personal-info">
       {isActiveIntroCard && (
         <div className="modal-wrap">
-          <div className="modal-content text-center">
+          <div className="modalcontent text-center">
             <div className="congrats-title">Help us know you better!</div>
             <div className="congrats-description">
               Finish the onboarding process and receive
@@ -118,7 +120,7 @@ const PersonalInfo: FC = () => {
       )}
       {isActiveCongrats && (
         <div className="modal-wrap">
-          <div className="modal-content">
+          <div className="modalcontent">
             <div
               onClick={handleToggleIsCongrats}
               className="close-icon-competency"
