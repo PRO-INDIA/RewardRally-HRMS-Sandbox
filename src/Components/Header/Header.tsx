@@ -1,7 +1,7 @@
 import "./Header.scss";
-import { FC } from "react";
 
-import { ProGamification } from "@stagetheproindia/react-progamification";
+import { FC } from "react";
+import { RewardRally } from "@stagetheproindia/react-rewardrally";
 import { environment } from "../../Environments/Environment";
 
 interface HeaderProps {}
@@ -14,7 +14,7 @@ const Header: FC<HeaderProps> = () => (
         <span>Reward Rally</span>
       </div>
       <div className="gamification-package">
-        <ProGamification
+        <RewardRally
           userId={environment.gamification.userId}
           applicationId={environment.gamification.applicationId}
           clientId={environment.clientId}
