@@ -4,7 +4,7 @@ import React, { FC, useEffect, useState } from "react";
 import { SubmitHandler, useForm, useWatch } from "react-hook-form";
 
 import { environment } from "../../Environments/Environment";
-import { updateGameAction } from "@stagetheproindia/react-progamification";
+import { updateGameAction } from "@stagetheproindia/react-rewardrally";
 
 interface TimeSheetProps {}
 

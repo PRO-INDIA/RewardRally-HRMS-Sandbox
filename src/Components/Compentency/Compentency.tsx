@@ -12,7 +12,7 @@ import ProfileCard from "../ProfileCard/ProfileCard";
 import React from "react";
 import Wizard from "../Wizard/Wizard";
 import { environment } from "../../Environments/Environment";
-import { updateGameAction } from "@stagetheproindia/react-progamification";
+import { updateGameAction } from "@stagetheproindia/react-rewardrally";
 
 interface Competency {
   courseName: string;

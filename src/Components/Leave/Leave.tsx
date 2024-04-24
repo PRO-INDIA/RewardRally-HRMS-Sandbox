@@ -3,7 +3,7 @@ import "./Leave.scss";
 import React, { useState } from "react";
 
 import { environment } from "../../Environments/Environment";
-import { updateGameAction } from "@stagetheproindia/react-progamification";
+import { updateGameAction } from "@stagetheproindia/react-rewardrally";
 import { useForm } from "react-hook-form";
 
 interface LeaveApprovalForm {
