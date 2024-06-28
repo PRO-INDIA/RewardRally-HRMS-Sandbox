@@ -1,46 +1,40 @@
-# Getting Started with Create React App
+# HRMSApp With RewardRally
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+RewardRally gamifies the HRMS app by introducing interactive challenges, achievement badges, and rewards for completing daily HR activities. Users earn points and compete on leaderboards based on tasks completed, fostering engagement and productivity within the workforce while enhancing the HR experience.
 
-## Available Scripts
+## Reward Rally - Platform that leverages gaming techniques to motivate user participation, engagement, and collaboration.
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+Install dependencies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+npm install
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Usage
 
-### `npm test`
+Serve on http://localhost:4200
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm run start
+```
 
-### `npm run build`
+- Confirm Your Bus Ticket By clicking 'Pay Now'
+- Your score in the leaderboard will be updated
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Security Reporting
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+If you find a security issue with our libraries or services please report it to contact@rewardrally.in with as much detail as possible. We will contact you shortly upon receiving the information.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## License
 
-### `npm run eject`
+Copyright (c) Peninsular Research Operation. All rights reserved.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Contact
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+For seamless integartion of rewardrally, questions, issues, or feedback, please contact contact@rewardrally.in
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Keywords
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+RewardRally, Gamification, NPM, angular, User engagement and retention, increase customer retention, Employee engagement, Employee retention, Gamification blogs, increase customer engagement, RewardRally Demo App ,RewardRally Sample Bus booking App, Reward Rally Sample App
