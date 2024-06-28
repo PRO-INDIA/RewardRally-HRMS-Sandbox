@@ -1,5 +1,5 @@
 export const environment = {
-    clientId: "08ce0068-2906-44d4-b840-b268e5511624",
+    clientId: "67f8b3a6-fc0d-4690-b2bb-c7178c2d3e4a",
     clientSecret: "CL68Q~D5jO5XEXI8TodHLkha3HG5E83zgZ6KmbZK",
     gamification: {
       userId: "c59c355c-bb89-44d1-87b6-87aa4239c11b",
