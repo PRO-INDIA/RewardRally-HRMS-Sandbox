@@ -121,7 +121,7 @@ const WorkHistroy: FC = () => {
 						<div>
 							{fields.map((workHistory: WorkHistory, index: number) => (
 								<div key={index}>
-									<div className="flexcontainer">
+									<div className="flex">
 										<div>
 											<label className="label-style">Company Name</label>
 											<input
@@ -151,7 +151,7 @@ const WorkHistroy: FC = () => {
 											/>
 										</div>
 									</div>
-									<div className="flexcontainer">
+									<div className="flex">
 										<div>
 											<label className="label-style">Duration From</label>
 											<input
