@@ -1,3 +1,4 @@
+import CreateUserForm from "../CreateUserForm";
 import "./ProfileCard.scss";
 
 import React, { FC } from "react";
@@ -6,6 +7,7 @@ interface ProfileCardProps {}
 
 const ProfileCard: FC<ProfileCardProps> = () => (
 	<div>
+		<CreateUserForm/>
 		<div className="user">Welcome Amey !</div>
 		<div className="profile-card">
 			<div className="profile-container">
