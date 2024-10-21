@@ -17,8 +17,6 @@ const Header: FC<HeaderProps> = () => (
         <RewardRally
           userId={environment.gamification.userId}
           applicationId={environment.gamification.applicationId}
-          clientId={environment.clientId}
-          clientSecret={environment.clientSecret}
         />
       </div>
     </header>
