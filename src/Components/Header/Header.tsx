@@ -13,7 +13,7 @@ const Header: FC<HeaderProps> = () => {
   const rewardRallyOptions = {
     editableUser: true,
     hideProfile: false,
-    showTabDefault: true,
+    showTabDefault: false,
   };
 
   return (
