@@ -1,28 +1,38 @@
 import "./Header.scss";
-
-import { FC } from "react";
-import { RewardRally } from "@stagetheproindia/react-rewardrally";
+import { FC, useEffect } from "react";
+import { initializeClientCredentials, RewardRally } from "@stagetheproindia/react-rewardrally";
 import { environment } from "../../Environments/Environment";
 
 interface HeaderProps {}
 
-const Header: FC<HeaderProps> = () => (
-  <div className="header" data-testid="Header">
-    <header>
-      <div className="logo-name">
-        <img className="logo" src="../assets/images/flag.png" alt="logo" />
-        <span>Reward Rally</span>
-      </div>
-      <div className="gamification-package">
-        <RewardRally
-          userId={environment.gamification.userId}
-          applicationId={environment.gamification.applicationId}
-          clientId={environment.clientId}
-          clientSecret={environment.clientSecret}
-        />
-      </div>
-    </header>
-  </div>
-);
+const Header: FC<HeaderProps> = () => {
+  useEffect(() => {
+    initializeClientCredentials(environment.clientId, environment.clientSecret);
+  }, []);
+
+  const rewardRallyOptions = {
+    editableUser: true,
+    hideProfile: false,
+    showTabDefault: true,
+  };
+
+  return (
+    <div className="header" data-testid="Header">
+      <header>
+        <div className="logo-name">
+          <img className="logo" src="../assets/images/flag.png" alt="logo" />
+          <span>Reward Rally</span>
+        </div>
+        <div className="gamification-package">
+          <RewardRally
+            userId={environment.gamification.userId}
+            applicationId={environment.gamification.applicationId}
+            options={rewardRallyOptions}
+          />
+        </div>
+      </header>
+    </div>
+  );
+};
 
 export default Header;
