@@ -1,0 +1,1427 @@
+export interface QuizQuestion {
+  id: number;
+  question: string;
+  options: string[];
+  correctAnswer: string;
+  category: string;
+}
+
+export const quizQuestionsByCategory: { [key: string]: QuizQuestion[] } = {
+  Technology: [
+    {
+      id: 1,
+      question: "Which of the following is a frontend framework?",
+      options: ["Django", "React", "Node.js", "Laravel"],
+      correctAnswer: "React",
+      category: "Technology",
+    },
+    {
+      id: 2,
+      question: "Which of these is a backend JavaScript runtime environment?",
+      options: ["Angular", "Node.js", "Vue", "React"],
+      correctAnswer: "Node.js",
+      category: "Technology",
+    },
+    {
+      id: 3,
+      question: "Which language is primarily used for styling web pages?",
+      options: ["HTML", "CSS", "Python", "Java"],
+      correctAnswer: "CSS",
+      category: "Technology",
+    },
+    {
+      id: 4,
+      question: "Which database is document-oriented?",
+      options: ["MongoDB", "MySQL", "PostgreSQL", "SQLite"],
+      correctAnswer: "MongoDB",
+      category: "Technology",
+    },
+    {
+      id: 5,
+      question:
+        "Which protocol is used to securely transfer data over the web?",
+      options: ["HTTP", "FTP", "HTTPS", "SMTP"],
+      correctAnswer: "HTTPS",
+      category: "Technology",
+    },
+    {
+      id: 6,
+      question: "Which command is used to initialize a Git repository?",
+      options: ["git start", "git init", "git new", "git create"],
+      correctAnswer: "git init",
+      category: "Technology",
+    },
+    {
+      id: 7,
+      question: "Which of the following is a JavaScript package manager?",
+      options: ["npm", "pip", "gem", "composer"],
+      correctAnswer: "npm",
+      category: "Technology",
+    },
+    {
+      id: 8,
+      question:
+        "Which of the following is a type-safe programming language that compiles to JavaScript?",
+      options: ["TypeScript", "CoffeeScript", "Python", "Ruby"],
+      correctAnswer: "TypeScript",
+      category: "Technology",
+    },
+    {
+      id: 9,
+      question: "Which HTTP status code means 'Not Found'?",
+      options: ["200", "301", "404", "500"],
+      correctAnswer: "404",
+      category: "Technology",
+    },
+    {
+      id: 10,
+      question: "Which of these tools is used for containerization?",
+      options: ["Docker", "Kubernetes", "Terraform", "Jenkins"],
+      correctAnswer: "Docker",
+      category: "Technology",
+    },
+    {
+      id: 11,
+      question: "Which HTML tag is used to include JavaScript code?",
+      options: ["<js>", "<code>", "<script>", "<javascript>"],
+      correctAnswer: "<script>",
+      category: "Technology",
+    },
+    {
+      id: 12,
+      question: "Which CSS property controls text size?",
+      options: ["font-style", "font-size", "text-style", "text-size"],
+      correctAnswer: "font-size",
+      category: "Technology",
+    },
+    {
+      id: 13,
+      question: "Which SQL command is used to remove records from a table?",
+      options: ["REMOVE", "DELETE", "DROP", "CLEAR"],
+      correctAnswer: "DELETE",
+      category: "Technology",
+    },
+    {
+      id: 14,
+      question:
+        "Which of the following frameworks is used for building cross-platform mobile apps?",
+      options: ["React Native", "Next.js", "Angular", "Flask"],
+      correctAnswer: "React Native",
+      category: "Technology",
+    },
+    {
+      id: 15,
+      question: "Which of these is a continuous integration tool?",
+      options: ["Jenkins", "React", "Git", "Postman"],
+      correctAnswer: "Jenkins",
+      category: "Technology",
+    },
+    {
+      id: 16,
+      question:
+        "Which file format is used to define environment variables in Node.js?",
+      options: [".env", "config.json", "package.json", ".bashrc"],
+      correctAnswer: ".env",
+      category: "Technology",
+    },
+    {
+      id: 17,
+      question:
+        "Which of the following commands installs dependencies in Node.js?",
+      options: ["npm install", "npm build", "node run", "yarn start"],
+      correctAnswer: "npm install",
+      category: "Technology",
+    },
+    {
+      id: 18,
+      question: "Which of the following is a Python web framework?",
+      options: ["Flask", "React", "Spring", "Vue"],
+      correctAnswer: "Flask",
+      category: "Technology",
+    },
+    {
+      id: 19,
+      question: "Which version control system uses repositories and branches?",
+      options: ["Git", "Docker", "MongoDB", "Firebase"],
+      correctAnswer: "Git",
+      category: "Technology",
+    },
+    {
+      id: 20,
+      question: "Which of the following is used for API testing?",
+      options: ["Postman", "VS Code", "Figma", "Slack"],
+      correctAnswer: "Postman",
+      category: "Technology",
+    },
+  ],
+  Business: [
+    {
+      id: 21,
+      question: "What does the term ‘Unicorn Startup’ refer to?",
+      options: [
+        "A startup valued over $1 billion",
+        "A startup owned by one person",
+        "A tech startup in Silicon Valley",
+        "A company older than 10 years",
+      ],
+      correctAnswer: "A startup valued over $1 billion",
+      category: "Business",
+    },
+    {
+      id: 22,
+      question:
+        "Which business model relies on recurring payments from customers?",
+      options: [
+        "Freemium Model",
+        "Subscription Model",
+        "Franchise Model",
+        "Affiliate Model",
+      ],
+      correctAnswer: "Subscription Model",
+      category: "Business",
+    },
+    {
+      id: 23,
+      question: "Which company is known as the parent of Google?",
+      options: ["Alphabet Inc.", "Meta", "Amazon", "Microsoft"],
+      correctAnswer: "Alphabet Inc.",
+      category: "Business",
+    },
+    {
+      id: 24,
+      question: "Which of the following is a pricing strategy?",
+      options: ["Skimming", "Branding", "Recruiting", "Auditing"],
+      correctAnswer: "Skimming",
+      category: "Business",
+    },
+    {
+      id: 25,
+      question: "Who is the current CEO of Tesla as of 2025?",
+      options: ["Elon Musk", "Tim Cook", "Sundar Pichai", "Jeff Bezos"],
+      correctAnswer: "Elon Musk",
+      category: "Business",
+    },
+    {
+      id: 26,
+      question: "In which year did Amazon start as an online bookstore?",
+      options: ["1994", "1998", "2000", "2002"],
+      correctAnswer: "1994",
+      category: "Business",
+    },
+    {
+      id: 27,
+      question: "Which company’s tagline is ‘Just Do It’?",
+      options: ["Puma", "Adidas", "Nike", "Reebok"],
+      correctAnswer: "Nike",
+      category: "Business",
+    },
+    {
+      id: 28,
+      question: "What does IPO stand for?",
+      options: [
+        "Initial Public Offering",
+        "Internal Performance Output",
+        "Investor Partnership Organization",
+        "International Portfolio Offering",
+      ],
+      correctAnswer: "Initial Public Offering",
+      category: "Business",
+    },
+    {
+      id: 29,
+      question:
+        "Which business tool is used for analyzing strengths, weaknesses, opportunities, and threats?",
+      options: [
+        "SWOT Analysis",
+        "PESTLE Analysis",
+        "Pareto Chart",
+        "Gantt Chart",
+      ],
+      correctAnswer: "SWOT Analysis",
+      category: "Business",
+    },
+    {
+      id: 30,
+      question: "Which company owns LinkedIn?",
+      options: ["Meta", "Google", "Microsoft", "Amazon"],
+      correctAnswer: "Microsoft",
+      category: "Business",
+    },
+    {
+      id: 31,
+      question: "Which country is home to Samsung’s headquarters?",
+      options: ["Japan", "China", "South Korea", "Singapore"],
+      correctAnswer: "South Korea",
+      category: "Business",
+    },
+    {
+      id: 32,
+      question: "What is the main goal of marketing?",
+      options: [
+        "Hiring employees",
+        "Selling products profitably",
+        "Maintaining accounts",
+        "Recruiting vendors",
+      ],
+      correctAnswer: "Selling products profitably",
+      category: "Business",
+    },
+    {
+      id: 33,
+      question: "Which of the following is a type of business ownership?",
+      options: ["Partnership", "Internship", "Leadership", "Membership"],
+      correctAnswer: "Partnership",
+      category: "Business",
+    },
+    {
+      id: 34,
+      question: "Which company developed the iPhone?",
+      options: ["Samsung", "Apple", "Google", "Nokia"],
+      correctAnswer: "Apple",
+      category: "Business",
+    },
+    {
+      id: 35,
+      question: "What does KPI stand for in performance measurement?",
+      options: [
+        "Key Product Insight",
+        "Key Performance Indicator",
+        "Knowledge Performance Index",
+        "Key Process Integration",
+      ],
+      correctAnswer: "Key Performance Indicator",
+      category: "Business",
+    },
+    {
+      id: 36,
+      question:
+        "What is the process of determining a job’s worth to set pay levels called?",
+      options: [
+        "Job Evaluation",
+        "Recruitment",
+        "Job Analysis",
+        "Performance Appraisal",
+      ],
+      correctAnswer: "Job Evaluation",
+      category: "Business",
+    },
+    {
+      id: 37,
+      question: "Which global company uses the slogan ‘Think Different’?",
+      options: ["Microsoft", "Apple", "IBM", "Dell"],
+      correctAnswer: "Apple",
+      category: "Business",
+    },
+    {
+      id: 38,
+      question: "Which Indian company’s founder is Ratan Tata?",
+      options: ["Infosys", "Reliance", "Tata Group", "Wipro"],
+      correctAnswer: "Tata Group",
+      category: "Business",
+    },
+    {
+      id: 39,
+      question:
+        "Which business concept refers to dividing a market into smaller segments?",
+      options: [
+        "Market Segmentation",
+        "Market Research",
+        "Market Expansion",
+        "Market Consolidation",
+      ],
+      correctAnswer: "Market Segmentation",
+      category: "Business",
+    },
+    {
+      id: 40,
+      question: "Which company owns Instagram?",
+      options: ["Meta", "Twitter", "Snapchat", "Google"],
+      correctAnswer: "Meta",
+      category: "Business",
+    },
+  ],
+  General: [
+    {
+      id: 41,
+      question:
+        "Which planet has the longest day in terms of rotation on its axis?",
+      options: ["Venus", "Mars", "Jupiter", "Saturn"],
+      correctAnswer: "Venus",
+      category: "General",
+    },
+    {
+      id: 42,
+      question: "Which metal is liquid at room temperature?",
+      options: ["Mercury", "Gold", "Aluminum", "Lead"],
+      correctAnswer: "Mercury",
+      category: "General",
+    },
+    {
+      id: 43,
+      question: "Who was the first woman to win a Nobel Prize?",
+      options: [
+        "Marie Curie",
+        "Rosalind Franklin",
+        "Mother Teresa",
+        "Ada Lovelace",
+      ],
+      correctAnswer: "Marie Curie",
+      category: "General",
+    },
+    {
+      id: 44,
+      question: "What is the capital of Canada?",
+      options: ["Vancouver", "Toronto", "Ottawa", "Montreal"],
+      correctAnswer: "Ottawa",
+      category: "General",
+    },
+    {
+      id: 45,
+      question: "Which planet has the most moons in the solar system?",
+      options: ["Jupiter", "Saturn", "Uranus", "Neptune"],
+      correctAnswer: "Saturn",
+      category: "General",
+    },
+    {
+      id: 46,
+      question: "Who developed the World Wide Web in 1989?",
+      options: [
+        "Tim Berners-Lee",
+        "Bill Gates",
+        "Steve Jobs",
+        "Linus Torvalds",
+      ],
+      correctAnswer: "Tim Berners-Lee",
+      category: "General",
+    },
+    {
+      id: 47,
+      question: "What is the largest internal organ in the human body?",
+      options: ["Heart", "Liver", "Lungs", "Kidney"],
+      correctAnswer: "Liver",
+      category: "General",
+    },
+    {
+      id: 48,
+      question:
+        "Which language is the most widely spoken native language in Africa?",
+      options: ["Swahili", "Arabic", "Hausa", "Amharic"],
+      correctAnswer: "Swahili",
+      category: "General",
+    },
+    {
+      id: 49,
+      question:
+        "In which city were the first modern Olympic Games held in 1896?",
+      options: ["Athens", "Paris", "Rome", "London"],
+      correctAnswer: "Athens",
+      category: "General",
+    },
+    {
+      id: 50,
+      question: "What is the hardest known material created by humans?",
+      options: [
+        "Graphene",
+        "Synthetic Diamond",
+        "Carbon Nanotube",
+        "Steel Alloy",
+      ],
+      correctAnswer: "Graphene",
+      category: "General",
+    },
+    {
+      id: 51,
+      question: "Which scientist proposed the idea of natural selection?",
+      options: [
+        "Charles Darwin",
+        "Gregor Mendel",
+        "Louis Pasteur",
+        "Alfred Wallace",
+      ],
+      correctAnswer: "Charles Darwin",
+      category: "General",
+    },
+    {
+      id: 52,
+      question: "What does 'HTTP' stand for in a web address?",
+      options: [
+        "HyperText Transfer Protocol",
+        "HighText Transmission Process",
+        "HyperTool Transfer Path",
+        "HyperText Technical Protocol",
+      ],
+      correctAnswer: "HyperText Transfer Protocol",
+      category: "General",
+    },
+    {
+      id: 53,
+      question: "Which country produces the most coffee in the world?",
+      options: ["Brazil", "Colombia", "Vietnam", "Ethiopia"],
+      correctAnswer: "Brazil",
+      category: "General",
+    },
+    {
+      id: 54,
+      question: "Which chemical element was named after Enrico Fermi?",
+      options: ["Fermium", "Einsteinium", "Curium", "Copernicium"],
+      correctAnswer: "Fermium",
+      category: "General",
+    },
+    {
+      id: 55,
+      question: "Which planet has the Great Red Spot, a giant storm?",
+      options: ["Jupiter", "Neptune", "Mars", "Saturn"],
+      correctAnswer: "Jupiter",
+      category: "General",
+    },
+    {
+      id: 56,
+      question: "Who was the first person to publish laws of planetary motion?",
+      options: [
+        "Johannes Kepler",
+        "Nicolaus Copernicus",
+        "Galileo Galilei",
+        "Isaac Newton",
+      ],
+      correctAnswer: "Johannes Kepler",
+      category: "General",
+    },
+    {
+      id: 57,
+      question: "Which scientist discovered penicillin?",
+      options: [
+        "Alexander Fleming",
+        "Louis Pasteur",
+        "Joseph Lister",
+        "Edward Jenner",
+      ],
+      correctAnswer: "Alexander Fleming",
+      category: "General",
+    },
+    {
+      id: 58,
+      question: "What is the smallest bone in the human body?",
+      options: ["Stapes", "Incus", "Femur", "Tibia"],
+      correctAnswer: "Stapes",
+      category: "General",
+    },
+    {
+      id: 59,
+      question: "Which ocean current warms the northwest coast of Europe?",
+      options: [
+        "Gulf Stream",
+        "Labrador Current",
+        "Kuroshio Current",
+        "Canary Current",
+      ],
+      correctAnswer: "Gulf Stream",
+      category: "General",
+    },
+    {
+      id: 60,
+      question: "Which ancient civilization built Machu Picchu?",
+      options: ["Inca", "Maya", "Aztec", "Olmec"],
+      correctAnswer: "Inca",
+      category: "General",
+    },
+  ],
+  Entertain: [
+    {
+      id: 61,
+      question: "Who played Iron Man in Marvel movies?",
+      options: [
+        "Chris Evans",
+        "Robert Downey Jr",
+        "Mark Ruffalo",
+        "Tom Holland",
+      ],
+      correctAnswer: "Robert Downey Jr",
+      category: "Entertain",
+    },
+    {
+      id: 62,
+      question: "Which movie features the song 'Let It Go'?",
+      options: ["Frozen", "Moana", "Encanto", "Tangled"],
+      correctAnswer: "Frozen",
+      category: "Entertain",
+    },
+    {
+      id: 63,
+      question: "Who is known as Thalaivar in Tamil cinema?",
+      options: ["Kamal Haasan", "Rajinikanth", "Ajith", "Vijay"],
+      correctAnswer: "Rajinikanth",
+      category: "Entertain",
+    },
+    {
+      id: 64,
+      question: "Which OTT platform released 'Money Heist'?",
+      options: ["Amazon Prime", "Netflix", "Hotstar", "SonyLIV"],
+      correctAnswer: "Netflix",
+      category: "Entertain",
+    },
+    {
+      id: 65,
+      question: "In which city are Oscars held?",
+      options: ["London", "Los Angeles", "New York", "Paris"],
+      correctAnswer: "Los Angeles",
+      category: "Entertain",
+    },
+    {
+      id: 66,
+      question: "Who directed 'Inception'?",
+      options: ["Christopher Nolan", "James Cameron", "Spielberg", "Scorsese"],
+      correctAnswer: "Christopher Nolan",
+      category: "Entertain",
+    },
+    {
+      id: 67,
+      question: "Which Tamil film features 'Why This Kolaveri Di'?",
+      options: ["3", "Maari", "VIP", "Anegan"],
+      correctAnswer: "3",
+      category: "Entertain",
+    },
+    {
+      id: 68,
+      question: "What is the name of Harry Potter’s owl?",
+      options: ["Hedwig", "Errol", "Crookshanks", "Scabbers"],
+      correctAnswer: "Hedwig",
+      category: "Entertain",
+    },
+    {
+      id: 69,
+      question: "Who played Joker in 'The Dark Knight'?",
+      options: [
+        "Heath Ledger",
+        "Joaquin Phoenix",
+        "Jared Leto",
+        "Christian Bale",
+      ],
+      correctAnswer: "Heath Ledger",
+      category: "Entertain",
+    },
+    {
+      id: 70,
+      question: "Which Tamil actor is called 'Thalapathy'?",
+      options: ["Vijay", "Ajith", "Suriya", "Sivakarthikeyan"],
+      correctAnswer: "Vijay",
+      category: "Entertain",
+    },
+    {
+      id: 71,
+      question: "Which TV series has a throne made of swords?",
+      options: ["Breaking Bad", "GOT", "Vikings", "The Witcher"],
+      correctAnswer: "GOT",
+      category: "Entertain",
+    },
+    {
+      id: 72,
+      question: "Who sings 'Shape of You'?",
+      options: ["Shawn Mendes", "Justin Bieber", "Ed Sheeran", "Charlie Puth"],
+      correctAnswer: "Ed Sheeran",
+      category: "Entertain",
+    },
+    {
+      id: 73,
+      question: "Which Tamil movie has the character 'Dilli'?",
+      options: ["Kaithi", "Vikram", "Master", "Leo"],
+      correctAnswer: "Kaithi",
+      category: "Entertain",
+    },
+    {
+      id: 74,
+      question: "Which movie is based on the sinking of a ship?",
+      options: ["Titanic", "Avatar", "Aquaman", "Poseidon"],
+      correctAnswer: "Titanic",
+      category: "Entertain",
+    },
+    {
+      id: 75,
+      question: "Who played Spider-Man in MCU?",
+      options: [
+        "Tobey Maguire",
+        "Andrew Garfield",
+        "Tom Holland",
+        "All of them",
+      ],
+      correctAnswer: "All of them",
+      category: "Entertain",
+    },
+    {
+      id: 76,
+      question: "Which Tamil film starred Vikram as a model?",
+      options: ["I", "Anniyan", "Saamy", "Raavanan"],
+      correctAnswer: "I",
+      category: "Entertain",
+    },
+    {
+      id: 77,
+      question: "Which movie has the line 'I’ll be back'?",
+      options: ["Terminator", "Predator", "Matrix", "Robocop"],
+      correctAnswer: "Terminator",
+      category: "Entertain",
+    },
+    {
+      id: 78,
+      question: "Who composed 'Naatu Naatu'?",
+      options: ["Devi Sri Prasad", "A.R. Rahman", "Anirudh", "M.M. Keeravani"],
+      correctAnswer: "M.M. Keeravani",
+      category: "Entertain",
+    },
+    {
+      id: 79,
+      question: "Which Tamil actor played Rolex in 'Vikram'?",
+      options: ["Kamal Haasan", "Suriya", "Vijay Sethupathi", "Fahadh Faasil"],
+      correctAnswer: "Suriya",
+      category: "Entertain",
+    },
+    {
+      id: 80,
+      question: "Which movie introduced the multiverse concept in Marvel?",
+      options: ["Doctor Strange 2", "Ant-Man", "Endgame", "Loki"],
+      correctAnswer: "Doctor Strange 2",
+      category: "Entertain",
+    },
+  ],
+
+  Lifestyle: [
+    {
+      id: 81,
+      question: "Which vitamin do we get from sunlight?",
+      options: ["Vitamin A", "Vitamin C", "Vitamin D", "Vitamin E"],
+      correctAnswer: "Vitamin D",
+      category: "Lifestyle",
+    },
+    {
+      id: 82,
+      question: "What does the 'F' in SPF stand for?",
+      options: ["Filter", "Factor", "Formula", "Fusion"],
+      correctAnswer: "Factor",
+      category: "Lifestyle",
+    },
+    {
+      id: 83,
+      question: "How many hours of sleep are ideal for adults?",
+      options: ["4–5", "6–8", "9–10", "10+"],
+      correctAnswer: "6–8",
+      category: "Lifestyle",
+    },
+    {
+      id: 84,
+      question: "What’s the main ingredient in guacamole?",
+      options: ["Avocado", "Tomato", "Cucumber", "Peas"],
+      correctAnswer: "Avocado",
+      category: "Lifestyle",
+    },
+    {
+      id: 85,
+      question: "Which country is famous for yoga?",
+      options: ["Japan", "India", "Thailand", "China"],
+      correctAnswer: "India",
+      category: "Lifestyle",
+    },
+    {
+      id: 86,
+      question: "What does BMI measure?",
+      options: ["Blood Pressure", "Body Fat", "Body Mass Index", "Heart Rate"],
+      correctAnswer: "Body Mass Index",
+      category: "Lifestyle",
+    },
+    {
+      id: 87,
+      question: "Which drink is known as ‘liquid gold’ in fitness?",
+      options: ["Green Tea", "Coconut Water", "Protein Shake", "Coffee"],
+      correctAnswer: "Protein Shake",
+      category: "Lifestyle",
+    },
+    {
+      id: 88,
+      question: "Which brand is known for the slogan ‘Just Do It’?",
+      options: ["Adidas", "Puma", "Nike", "Reebok"],
+      correctAnswer: "Nike",
+      category: "Lifestyle",
+    },
+    {
+      id: 89,
+      question: "What’s a common mindfulness practice?",
+      options: ["Journaling", "Jogging", "Shopping", "Gaming"],
+      correctAnswer: "Journaling",
+      category: "Lifestyle",
+    },
+    {
+      id: 90,
+      question: "Which meal is often called 'the most important of the day'?",
+      options: ["Lunch", "Dinner", "Breakfast", "Snack"],
+      correctAnswer: "Breakfast",
+      category: "Lifestyle",
+    },
+    {
+      id: 91,
+      question: "What’s the most used fitness tracker brand?",
+      options: ["Fitbit", "Garmin", "Apple Watch", "Mi Band"],
+      correctAnswer: "Apple Watch",
+      category: "Lifestyle",
+    },
+    {
+      id: 92,
+      question: "Which type of diet avoids animal products?",
+      options: ["Keto", "Vegan", "Paleo", "Mediterranean"],
+      correctAnswer: "Vegan",
+      category: "Lifestyle",
+    },
+    {
+      id: 93,
+      question: "What’s the Japanese art of minimalism called?",
+      options: ["Kintsugi", "Wabi-sabi", "Ikigai", "Origami"],
+      correctAnswer: "Wabi-sabi",
+      category: "Lifestyle",
+    },
+    {
+      id: 94,
+      question: "Which color is often linked to calmness?",
+      options: ["Red", "Blue", "Yellow", "Black"],
+      correctAnswer: "Blue",
+      category: "Lifestyle",
+    },
+    {
+      id: 95,
+      question: "What’s the most popular global coffee chain?",
+      options: ["Costa", "Starbucks", "Tim Hortons", "CCD"],
+      correctAnswer: "Starbucks",
+      category: "Lifestyle",
+    },
+    {
+      id: 96,
+      question: "Which smartwatch feature tracks sleep cycles?",
+      options: ["Heart Rate", "REM Monitor", "Sleep Tracker", "Oxygen Sensor"],
+      correctAnswer: "Sleep Tracker",
+      category: "Lifestyle",
+    },
+    {
+      id: 97,
+      question: "Which sport is often practiced for flexibility?",
+      options: ["Yoga", "Cricket", "Cycling", "Running"],
+      correctAnswer: "Yoga",
+      category: "Lifestyle",
+    },
+    {
+      id: 98,
+      question: "What’s the average daily water intake recommendation?",
+      options: ["1L", "2L", "3L", "4L"],
+      correctAnswer: "2L",
+      category: "Lifestyle",
+    },
+    {
+      id: 99,
+      question: "Which diet trend focuses on high fat and low carb?",
+      options: ["Vegan", "Keto", "Paleo", "Detox"],
+      correctAnswer: "Keto",
+      category: "Lifestyle",
+    },
+    {
+      id: 100,
+      question: "Which travel accessory is essential for long flights?",
+      options: ["Neck Pillow", "Sunglasses", "Umbrella", "Belt"],
+      correctAnswer: "Neck Pillow",
+      category: "Lifestyle",
+    },
+  ],
+  Fun: [
+    {
+      id: 101,
+      question: "What does Wi-Fi actually stand for?",
+      options: ["Wireless Fidelity", "Wide Finder", "Wave Field", "Nothing"],
+      correctAnswer: "Wireless Fidelity",
+      category: "Fun",
+    },
+    {
+      id: 102,
+      question: "Which planet is known as the ‘Morning Star’?",
+      options: ["Venus", "Mars", "Jupiter", "Mercury"],
+      correctAnswer: "Venus",
+      category: "Fun",
+    },
+    {
+      id: 103,
+      question: "Which company’s logo has a bitten apple?",
+      options: ["Microsoft", "Apple", "Samsung", "IBM"],
+      correctAnswer: "Apple",
+      category: "Fun",
+    },
+    {
+      id: 104,
+      question: "What is the most used emoji worldwide?",
+      options: ["😂", "❤️", "👍", "😭"],
+      correctAnswer: "😂",
+      category: "Fun",
+    },
+    {
+      id: 105,
+      question: "Which animal is known as the king of the jungle?",
+      options: ["Tiger", "Elephant", "Lion", "Leopard"],
+      correctAnswer: "Lion",
+      category: "Fun",
+    },
+    {
+      id: 106,
+      question: "What does LOL stand for in chats?",
+      options: [
+        "Lots of Love",
+        "Laugh Out Loud",
+        "Lack of Logic",
+        "Line of Luck",
+      ],
+      correctAnswer: "Laugh Out Loud",
+      category: "Fun",
+    },
+    {
+      id: 107,
+      question: "Which soft drink was originally invented as medicine?",
+      options: ["Coca-Cola", "Pepsi", "7UP", "Mountain Dew"],
+      correctAnswer: "Coca-Cola",
+      category: "Fun",
+    },
+    {
+      id: 108,
+      question: "What color is the ‘E’ in the Google logo?",
+      options: ["Red", "Blue", "Green", "Yellow"],
+      correctAnswer: "Red",
+      category: "Fun",
+    },
+    {
+      id: 109,
+      question: "Which cartoon character lives in a pineapple under the sea?",
+      options: ["SpongeBob", "Nemo", "Dory", "Patrick"],
+      correctAnswer: "SpongeBob",
+      category: "Fun",
+    },
+    {
+      id: 110,
+      question: "What’s the only food that never spoils?",
+      options: ["Honey", "Rice", "Salt", "Vinegar"],
+      correctAnswer: "Honey",
+      category: "Fun",
+    },
+    {
+      id: 111,
+      question: "What is the fear of missing out called?",
+      options: ["JOMO", "FOMO", "TOMO", "ROMO"],
+      correctAnswer: "FOMO",
+      category: "Fun",
+    },
+    {
+      id: 112,
+      question: "Which social media app uses a ghost as its logo?",
+      options: ["Snapchat", "Instagram", "Telegram", "TikTok"],
+      correctAnswer: "Snapchat",
+      category: "Fun",
+    },
+    {
+      id: 113,
+      question: "What do you call fake spaghetti?",
+      options: ["Impasta", "NoodleFool", "Fakeghetti", "Pranksta Pasta"],
+      correctAnswer: "Impasta",
+      category: "Fun",
+    },
+    {
+      id: 114,
+      question: "In which country did pizza originate?",
+      options: ["France", "Italy", "USA", "Mexico"],
+      correctAnswer: "Italy",
+      category: "Fun",
+    },
+    {
+      id: 115,
+      question: "What do bees produce?",
+      options: ["Milk", "Honey", "Wax", "Syrup"],
+      correctAnswer: "Honey",
+      category: "Fun",
+    },
+    {
+      id: 116,
+      question: "Which planet is known for its rings?",
+      options: ["Saturn", "Venus", "Mars", "Earth"],
+      correctAnswer: "Saturn",
+      category: "Fun",
+    },
+    {
+      id: 117,
+      question: "Which movie has the quote ‘I’ll be back’?",
+      options: ["Terminator", "Matrix", "Rocky", "Avatar"],
+      correctAnswer: "Terminator",
+      category: "Fun",
+    },
+    {
+      id: 118,
+      question: "What gets wetter the more it dries?",
+      options: ["Towel", "Water", "Rain", "Cloud"],
+      correctAnswer: "Towel",
+      category: "Fun",
+    },
+    {
+      id: 119,
+      question: "What is the national animal of India?",
+      options: ["Peacock", "Elephant", "Tiger", "Lion"],
+      correctAnswer: "Tiger",
+      category: "Fun",
+    },
+    {
+      id: 120,
+      question: "Which app is known for short dance videos?",
+      options: ["TikTok", "Instagram", "YouTube", "Snapchat"],
+      correctAnswer: "TikTok",
+      category: "Fun",
+    },
+  ],
+  "AI": [
+    {
+      id: 121,
+      question: "What does NLP stand for in AI?",
+      options: [
+        "Natural Logic Process",
+        "Natural Language Processing",
+        "Neural Link Processing",
+        "Network Learning Protocol",
+      ],
+      correctAnswer: "Natural Language Processing",
+      category: "AI",
+    },
+    {
+      id: 122,
+      question: "Which company created ChatGPT?",
+      options: ["Google", "OpenAI", "Meta", "Anthropic"],
+      correctAnswer: "OpenAI",
+      category: "AI",
+    },
+    {
+      id: 123,
+      question: "Which algorithm is widely used for image recognition?",
+      options: ["CNN", "RNN", "SVM", "KNN"],
+      correctAnswer: "CNN",
+      category: "AI",
+    },
+    {
+      id: 124,
+      question: "What does ‘Deep’ in Deep Learning refer to?",
+      options: [
+        "Depth of Data",
+        "Multiple Hidden Layers",
+        "Complex Algorithms",
+        "Long Training Time",
+      ],
+      correctAnswer: "Multiple Hidden Layers",
+      category: "AI",
+    },
+    {
+      id: 125,
+      question: "Which language is most commonly used in AI development?",
+      options: ["Java", "Python", "C++", "Ruby"],
+      correctAnswer: "Python",
+      category: "AI",
+    },
+    {
+      id: 126,
+      question: "What is reinforcement learning based on?",
+      options: [
+        "Rewards and Penalties",
+        "Supervised Data",
+        "Clustering",
+        "Regression",
+      ],
+      correctAnswer: "Rewards and Penalties",
+      category: "AI",
+    },
+    {
+      id: 127,
+      question: "Which AI model is known for handling sequential data?",
+      options: ["CNN", "GAN", "RNN", "SVM"],
+      correctAnswer: "RNN",
+      category: "AI",
+    },
+    {
+      id: 128,
+      question: "Which company developed the AI system DeepMind?",
+      options: ["Microsoft", "Google", "Amazon", "IBM"],
+      correctAnswer: "Google",
+      category: "AI",
+    },
+    {
+      id: 129,
+      question: "What does a GAN consist of?",
+      options: [
+        "Generator and Discriminator",
+        "Guide and Analyzer",
+        "Gradient and Network",
+        "Graph and Node",
+      ],
+      correctAnswer: "Generator and Discriminator",
+      category: "AI",
+    },
+    {
+      id: 130,
+      question:
+        "Which AI technique enables machines to make decisions like humans?",
+      options: ["Expert Systems", "Data Mining", "Big Data", "Blockchain"],
+      correctAnswer: "Expert Systems",
+      category: "AI",
+    },
+    {
+      id: 131,
+      question: "Which AI model is used for generating text, like ChatGPT?",
+      options: ["Transformer", "LSTM", "Autoencoder", "Naive Bayes"],
+      correctAnswer: "Transformer",
+      category: "AI",
+    },
+    {
+      id: 132,
+      question: "What is the main goal of computer vision?",
+      options: [
+        "Understanding images and videos",
+        "Improving sound quality",
+        "Generating code",
+        "Predicting emotions",
+      ],
+      correctAnswer: "Understanding images and videos",
+      category: "AI",
+    },
+    {
+      id: 133,
+      question:
+        "Which metric is commonly used to evaluate classification models?",
+      options: ["Accuracy", "Speed", "Scalability", "Memory"],
+      correctAnswer: "Accuracy",
+      category: "AI",
+    },
+    {
+      id: 134,
+      question: "Which AI concept is inspired by human brain neurons?",
+      options: [
+        "Neural Networks",
+        "Data Trees",
+        "Logic Gates",
+        "Decision Graphs",
+      ],
+      correctAnswer: "Neural Networks",
+      category: "AI",
+    },
+    {
+      id: 135,
+      question: "What is the main challenge of unsupervised learning?",
+      options: [
+        "Lack of labeled data",
+        "Too many algorithms",
+        "Slow training",
+        "Cost of computation",
+      ],
+      correctAnswer: "Lack of labeled data",
+      category: "AI",
+    },
+    {
+      id: 136,
+      question: "Which AI concept helps detect fraud in financial systems?",
+      options: [
+        "Anomaly Detection",
+        "Regression",
+        "Augmentation",
+        "Feature Scaling",
+      ],
+      correctAnswer: "Anomaly Detection",
+      category: "AI",
+    },
+    {
+      id: 137,
+      question:
+        "What is the process of training an AI on pre-existing data called?",
+      options: [
+        "Supervised Learning",
+        "Reinforcement Learning",
+        "Transfer Learning",
+        "Backpropagation",
+      ],
+      correctAnswer: "Supervised Learning",
+      category: "AI",
+    },
+    {
+      id: 138,
+      question: "Which AI tool is often used for data visualization?",
+      options: ["TensorBoard", "VS Code", "GitHub", "Notepad++"],
+      correctAnswer: "TensorBoard",
+      category: "AI",
+    },
+    {
+      id: 139,
+      question:
+        "Which AI concept involves generating new data similar to training data?",
+      options: [
+        "Generative AI",
+        "Descriptive AI",
+        "Predictive AI",
+        "Reactive AI",
+      ],
+      correctAnswer: "Generative AI",
+      category: "AI",
+    },
+    {
+      id: 140,
+      question: "What does the Turing Test evaluate?",
+      options: [
+        "Machine intelligence",
+        "Algorithm accuracy",
+        "Data quality",
+        "Computation speed",
+      ],
+      correctAnswer: "Machine intelligence",
+      category: "AI",
+    },
+  ],
+  Cricket: [
+    {
+      id: 141,
+      question: "Who hit the first double century in ODI cricket?",
+      options: [
+        "Sachin Tendulkar",
+        "Rohit Sharma",
+        "Virender Sehwag",
+        "Chris Gayle",
+      ],
+      correctAnswer: "Sachin Tendulkar",
+      category: "Cricket",
+    },
+    {
+      id: 142,
+      question: "Which country won the first-ever Cricket World Cup in 1975?",
+      options: ["Australia", "West Indies", "England", "India"],
+      correctAnswer: "West Indies",
+      category: "Cricket",
+    },
+    {
+      id: 143,
+      question:
+        "Who was the first player to take 10 wickets in a single Test innings?",
+      options: [
+        "Anil Kumble",
+        "Jim Laker",
+        "Muttiah Muralitharan",
+        "Shane Warne",
+      ],
+      correctAnswer: "Jim Laker",
+      category: "Cricket",
+    },
+    {
+      id: 144,
+      question: "Which Indian cricketer is nicknamed 'The Wall'?",
+      options: [
+        "Rahul Dravid",
+        "Sourav Ganguly",
+        "VVS Laxman",
+        "Sunil Gavaskar",
+      ],
+      correctAnswer: "Rahul Dravid",
+      category: "Cricket",
+    },
+    {
+      id: 145,
+      question:
+        "Who was the captain of India during the 2007 T20 World Cup win?",
+      options: [
+        "MS Dhoni",
+        "Rahul Dravid",
+        "Sourav Ganguly",
+        "Virender Sehwag",
+      ],
+      correctAnswer: "MS Dhoni",
+      category: "Cricket",
+    },
+    {
+      id: 146,
+      question: "Which bowler has taken the most wickets in Test cricket?",
+      options: [
+        "Shane Warne",
+        "James Anderson",
+        "Muttiah Muralitharan",
+        "Anil Kumble",
+      ],
+      correctAnswer: "Muttiah Muralitharan",
+      category: "Cricket",
+    },
+    {
+      id: 147,
+      question: "Which team has won the most IPL titles?",
+      options: [
+        "Mumbai Indians",
+        "Chennai Super Kings",
+        "Kolkata Knight Riders",
+        "Gujarat Titans",
+      ],
+      correctAnswer: "Mumbai Indians",
+      category: "Cricket",
+    },
+    {
+      id: 148,
+      question: "Who scored the fastest century in ODI history?",
+      options: [
+        "AB de Villiers",
+        "Shahid Afridi",
+        "Corey Anderson",
+        "Chris Gayle",
+      ],
+      correctAnswer: "AB de Villiers",
+      category: "Cricket",
+    },
+    {
+      id: 149,
+      question: "Which cricketer is known as ‘Universe Boss’?",
+      options: [
+        "Chris Gayle",
+        "Andre Russell",
+        "Kieron Pollard",
+        "Dwayne Bravo",
+      ],
+      correctAnswer: "Chris Gayle",
+      category: "Cricket",
+    },
+    {
+      id: 150,
+      question:
+        "Who was the first Indian to win the ICC Cricketer of the Year award?",
+      options: ["Rahul Dravid", "Sachin Tendulkar", "Virat Kohli", "MS Dhoni"],
+      correctAnswer: "Rahul Dravid",
+      category: "Cricket",
+    },
+    {
+      id: 151,
+      question: "Which ground is known as 'The Home of Cricket'?",
+      options: [
+        "Eden Gardens",
+        "Lord's",
+        "Melbourne Cricket Ground",
+        "The Oval",
+      ],
+      correctAnswer: "Lord's",
+      category: "Cricket",
+    },
+    {
+      id: 152,
+      question:
+        "Who bowled the famous last over in the 2016 T20 World Cup final?",
+      options: [
+        "Ben Stokes",
+        "Carlos Brathwaite",
+        "Dwayne Bravo",
+        "Andre Russell",
+      ],
+      correctAnswer: "Ben Stokes",
+      category: "Cricket",
+    },
+    {
+      id: 153,
+      question: "Which player has scored the most runs in IPL history?",
+      options: ["Virat Kohli", "Rohit Sharma", "Suresh Raina", "David Warner"],
+      correctAnswer: "Virat Kohli",
+      category: "Cricket",
+    },
+    {
+      id: 154,
+      question: "Who was India's first World Cup-winning captain?",
+      options: ["Kapil Dev", "Sunil Gavaskar", "Sourav Ganguly", "MS Dhoni"],
+      correctAnswer: "Kapil Dev",
+      category: "Cricket",
+    },
+    {
+      id: 155,
+      question: "What’s the highest possible score in one over without extras?",
+      options: ["36", "30", "42", "48"],
+      correctAnswer: "36",
+      category: "Cricket",
+    },
+    {
+      id: 156,
+      question: "Who holds the record for most sixes in international cricket?",
+      options: ["Chris Gayle", "Rohit Sharma", "MS Dhoni", "AB de Villiers"],
+      correctAnswer: "Chris Gayle",
+      category: "Cricket",
+    },
+    {
+      id: 157,
+      question: "Which Indian bowler took a hat-trick in a World Cup match?",
+      options: [
+        "Chetan Sharma",
+        "Harbhajan Singh",
+        "Mohammad Shami",
+        "Kuldeep Yadav",
+      ],
+      correctAnswer: "Chetan Sharma",
+      category: "Cricket",
+    },
+    {
+      id: 158,
+      question:
+        "Who was the first cricketer to score 100 international centuries?",
+      options: [
+        "Sachin Tendulkar",
+        "Ricky Ponting",
+        "Virat Kohli",
+        "Jacques Kallis",
+      ],
+      correctAnswer: "Sachin Tendulkar",
+      category: "Cricket",
+    },
+    {
+      id: 159,
+      question: "Which country hosted the 2019 Cricket World Cup?",
+      options: ["England", "Australia", "India", "New Zealand"],
+      correctAnswer: "England",
+      category: "Cricket",
+    },
+    {
+      id: 160,
+      question:
+        "Who was the player of the tournament in the 2023 Cricket World Cup?",
+      options: ["Virat Kohli", "Travis Head", "Rohit Sharma", "Glenn Maxwell"],
+      correctAnswer: "Virat Kohli",
+      category: "Cricket",
+    },
+  ],
+};
+
+// Function to get random questions based on category name
+export const getQuestionsByPrizeName = (
+  categoryName: string,
+  count: number = 3
+): QuizQuestion[] => {
+  // Use the category name directly (e.g., "Technology", "Business", "Fun", "Lifestyle")
+  const category = categoryName;
+
+  // Get questions for that category
+  const categoryQuestions = quizQuestionsByCategory[category] || [];
+
+  // If not enough questions in category, add questions from other categories
+  let availableQuestions = [...categoryQuestions];
+
+  if (availableQuestions.length < count) {
+    // Add questions from other categories
+    for (const cat of Object.keys(quizQuestionsByCategory)) {
+      if (cat !== category) {
+        availableQuestions = [
+          ...availableQuestions,
+          ...quizQuestionsByCategory[cat],
+        ];
+      }
+    }
+  }
+
+  // Shuffle and return requested count
+  const shuffledQuestions = [...availableQuestions];
+  shuffledQuestions.sort(() => Math.random() - 0.5);
+  return shuffledQuestions.slice(0, count);
+};
+
+// Backward compatibility - get random questions from all categories
+export const getRandomQuestions = (count: number = 3): QuizQuestion[] => {
+  const allQuestions: QuizQuestion[] = [];
+  for (const questions of Object.values(quizQuestionsByCategory)) {
+    allQuestions.push(...questions);
+  }
+  const shuffledQuestions = [...allQuestions];
+  shuffledQuestions.sort(() => Math.random() - 0.5);
+  return shuffledQuestions.slice(0, count);
+};

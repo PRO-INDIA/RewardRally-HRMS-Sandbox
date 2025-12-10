@@ -1,0 +1,384 @@
+﻿// Add these styles to your existing SpinWheel.scss
+
+.SpinWheel {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ae7f34 0%, #8c4ace 60%, #00046f 100%);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.SpinWheel .spin-wheel-container {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.SpinWheel .wheel-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.SpinWheel .wheel-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.SpinWheel .wheel-icon {
+  font-size: 2.5rem;
+  position: absolute;
+  right: -3.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.SpinWheel .wheel-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+}
+
+.SpinWheel .wheel-pointer {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  animation: pointerBounce 1.5s ease-in-out infinite;
+}
+
+.SpinWheel .wheel-pointer svg {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+.SpinWheel .wheel-container {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SpinWheel .wheel-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+}
+
+.SpinWheel .wheel-segments {
+  transition: transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+}
+
+.SpinWheel .wheel-segments.spinning {
+  transition: transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+}
+
+.SpinWheel .spin-button {
+  padding: 1rem 3rem;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #663399;
+  background: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: 2s ease-in-out infinite;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.SpinWheel .spin-button:hover:not(.disabled) {
+  transform: translateY(-2px);
+}
+
+.SpinWheel .spin-button:active:not(.disabled) {
+  transform: translateY(0);
+}
+
+.SpinWheel .spin-button.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  animation: none;
+}
+
+// Results Wrapper
+.SpinWheel .results-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.SpinWheel .result-container {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: resultSlideIn 0.5s ease-out;
+  width: 100%;
+}
+
+.SpinWheel .result-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #667eea;
+  margin: 0 0 1rem 0;
+  animation: resultPulse 0.8s ease-in-out;
+}
+
+.SpinWheel .result-prize {
+  padding: 1.5rem;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: prizeReveal 0.6s ease-out 0.3s both;
+}
+
+.SpinWheel .result-prize strong {
+  font-weight: 800;
+  font-size: 1.8rem;
+}
+
+// Countdown Styles
+.SpinWheel .countdown-container {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: countdownSlideIn 0.5s ease-out;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.SpinWheel .countdown-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: countdownPulse 1s ease-in-out infinite;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.SpinWheel .countdown-number {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.SpinWheel .countdown-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  animation: textFade 1s ease-in-out infinite alternate;
+}
+
+@keyframes pointerBounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
+}
+
+@keyframes resultSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes resultPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes prizeReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes countdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes countdownPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+  }
+}
+
+@keyframes textFade {
+  from {
+    opacity: 0.7;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 768px) {
+  .SpinWheel .wheel-title {
+    font-size: 2rem;
+  }
+  .SpinWheel .wheel-icon {
+    font-size: 1.8rem;
+    right: -2.5rem;
+  }
+  .SpinWheel .wheel-container {
+    width: 320px;
+    height: 320px;
+  }
+  .SpinWheel .spin-button {
+    padding: 0.8rem 2.5rem;
+    font-size: 1.2rem;
+  }
+  .SpinWheel .result-title {
+    font-size: 1.5rem;
+  }
+  .SpinWheel .result-prize {
+    font-size: 1.2rem;
+  }
+  .SpinWheel .result-prize strong {
+    font-size: 1.4rem;
+  }
+  .SpinWheel .results-wrapper {
+    max-width: 320px;
+  }
+  .SpinWheel .countdown-container {
+    padding: 1.5rem;
+  }
+  .SpinWheel .countdown-circle {
+    width: 80px;
+    height: 80px;
+  }
+  .SpinWheel .countdown-number {
+    font-size: 2.2rem;
+  }
+  .SpinWheel .countdown-text {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .SpinWheel {
+    padding: 1rem;
+  }
+  .SpinWheel .wheel-title {
+    font-size: 1.5rem;
+  }
+  .SpinWheel .wheel-icon {
+    font-size: 1.5rem;
+    right: -2rem;
+  }
+  .SpinWheel .wheel-container {
+    width: 280px;
+    height: 280px;
+  }
+  .SpinWheel .wheel-pointer svg {
+    width: 30px;
+    height: 40px;
+  }
+  .SpinWheel .spin-button {
+    padding: 0.7rem 2rem;
+    font-size: 1rem;
+  }
+  .SpinWheel .results-wrapper {
+    max-width: 280px;
+  }
+  .SpinWheel .countdown-container {
+    padding: 1.25rem;
+  }
+  .SpinWheel .countdown-circle {
+    width: 70px;
+    height: 70px;
+  }
+  .SpinWheel .countdown-number {
+    font-size: 2rem;
+  }
+  .SpinWheel .countdown-text {
+    font-size: 1rem;
+  }
+  .loading-dots::after {
+    content: "";
+    animation: dots 1s steps(4, end) infinite;
+  }
+
+  @keyframes dots {
+    0%,
+    20% {
+      content: "";
+    }
+    40% {
+      content: ".";
+    }
+    60% {
+      content: "..";
+    }
+    80%,
+    100% {
+      content: "...";
+    }
+  }
+}

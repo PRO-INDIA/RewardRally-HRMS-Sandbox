@@ -1,0 +1,554 @@
+﻿.FullPageLeaderboard {
+  min-height: 100vh;
+  background: linear-gradient(
+      135deg,
+      rgba(138, 43, 226, 0.1) 0%,
+      rgba(75, 0, 130, 0.1) 100%
+    ),
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(138, 43, 226, 0.2) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 50%,
+      rgba(138, 43, 226, 0.2) 0%,
+      transparent 50%
+    ),
+    linear-gradient(180deg, #1a0a2e 0%, #0f0520 100%);
+  padding: 3rem 2rem;
+  font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.FullPageLeaderboard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+      90deg,
+      rgba(138, 43, 226, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(rgba(138, 43, 226, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+}
+
+.FullPageLeaderboard .leaderboard-container {
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.FullPageLeaderboard .leaderboard-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeInDown 0.8s ease-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.FullPageLeaderboard .leaderboard-header .header-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.FullPageLeaderboard .leaderboard-header .header-badges .badge-icon {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+  animation: pulse 2s infinite;
+}
+
+.FullPageLeaderboard .leaderboard-header .header-badges .leaderboard-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 0 0 20px rgba(138, 43, 226, 0.8),
+    0 0 40px rgba(138, 43, 226, 0.6), 0 4px 8px rgba(0, 0, 0, 0.5);
+  letter-spacing: 8px;
+}
+
+.FullPageLeaderboard .leaderboard-table-wrapper {
+  background: linear-gradient(
+    135deg,
+    rgba(138, 43, 226, 0.15) 0%,
+    rgba(75, 0, 130, 0.15) 100%
+  );
+  border-radius: 30px;
+  padding: 3px;
+  box-shadow: 0 0 30px rgba(138, 43, 226, 0.4),
+    inset 0 0 20px rgba(138, 43, 226, 0.1);
+  animation: fadeInUp 0.8s ease-out;
+  border: 3px solid;
+  border-image: linear-gradient(135deg, #ffd700, #ff8c00, #ffd700) 1;
+}
+
+.FullPageLeaderboard .leaderboard-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: rgba(20, 10, 40, 0.9);
+  border-radius: 27px;
+  overflow: hidden;
+}
+
+.FullPageLeaderboard .leaderboard-table thead {
+  background: linear-gradient(
+    135deg,
+    rgba(138, 43, 226, 0.4) 0%,
+    rgba(75, 0, 130, 0.4) 100%
+  );
+}
+
+.FullPageLeaderboard .leaderboard-table thead tr th {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 2px solid rgba(138, 43, 226, 0.5);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.FullPageLeaderboard .leaderboard-table thead tr th:first-child {
+  text-align: left;
+  padding-left: 2rem;
+}
+
+.FullPageLeaderboard .leaderboard-table thead tr th:nth-child(2) {
+  text-align: left;
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr {
+  background: linear-gradient(
+    135deg,
+    rgba(138, 43, 226, 0.08) 0%,
+    rgba(75, 0, 130, 0.08) 100%
+  );
+  transition: all 0.3s ease;
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr:hover {
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.6),
+    inset 0 0 30px rgba(138, 43, 226, 0.2);
+  filter: brightness(1.1);
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr.rank-1 {
+  background: linear-gradient(to bottom, #c1a034 0%, #d08800 100%);
+  border-bottom: 2px solid rgba(193, 160, 52, 0.5);
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr.rank-1 .rank-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 3px solid #4169e1;
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr.rank-2 {
+  background: linear-gradient(to bottom, #9f96a8 0%, #888091 100%);
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr.rank-2 .rank-badge {
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  border: 3px solid #ffa500;
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr.rank-3 {
+  background: linear-gradient(to bottom, #6f3caa 0%, #3a1860 100%);
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr.rank-3 .rank-badge {
+  background: linear-gradient(135deg, #ff8c42 0%, #ffa500 100%);
+  border: 3px solid #ff6347;
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr.rank-4 {
+  background: linear-gradient(
+    135deg,
+    rgba(138, 43, 226, 0.15) 0%,
+    rgba(75, 0, 130, 0.15) 100%
+  );
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr.rank-4 .rank-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 3px solid #4a5568;
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr.rank-5 {
+  background: linear-gradient(
+    135deg,
+    rgba(138, 43, 226, 0.12) 0%,
+    rgba(75, 0, 130, 0.12) 100%
+  );
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr.rank-5 .rank-badge {
+  background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%);
+  border: 3px solid #6b21a8;
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr td {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr td.rank-cell {
+  text-align: left;
+  padding-left: 2rem;
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr td.rank-cell .rank-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    rgba(138, 43, 226, 0.6) 0%,
+    rgba(75, 0, 130, 0.6) 100%
+  );
+  border: 3px solid rgba(138, 43, 226, 0.8);
+  transform: rotate(45deg);
+  box-shadow: 0 4px 10px rgba(138, 43, 226, 0.4);
+}
+
+.FullPageLeaderboard
+  .leaderboard-table
+  tbody
+  tr
+  td.rank-cell
+  .rank-badge
+  .rank-number {
+  transform: rotate(-45deg);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr td.name-cell {
+  text-align: left;
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr td.name-cell .user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.FullPageLeaderboard
+  .leaderboard-table
+  tbody
+  tr
+  td.name-cell
+  .user-info
+  .user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(138, 43, 226, 0.6);
+  box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
+}
+
+.FullPageLeaderboard
+  .leaderboard-table
+  tbody
+  tr
+  td.name-cell
+  .user-info
+  .user-avatar
+  img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.FullPageLeaderboard
+  .leaderboard-table
+  tbody
+  tr
+  td.name-cell
+  .user-info
+  .user-avatar
+  .avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.FullPageLeaderboard
+  .leaderboard-table
+  tbody
+  tr
+  td.name-cell
+  .user-info
+  .user-name {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr td.id-cell {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr td.score-cell {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #ffd700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr td.matches-cell,
+.FullPageLeaderboard .leaderboard-table tbody tr td.winrate-cell {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.FullPageLeaderboard .leaderboard-table tbody tr td.region-cell {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+.FullPageLeaderboard .loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: #ffffff;
+}
+
+.FullPageLeaderboard .loading-container .spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid rgba(138, 43, 226, 0.3);
+  border-top-color: #8a2be2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+}
+
+.FullPageLeaderboard .loading-container p {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.FullPageLeaderboard .error-container {
+  background: rgba(220, 38, 38, 0.15);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  border: 2px solid rgba(220, 38, 38, 0.5);
+}
+
+.FullPageLeaderboard .error-container .error-message {
+  font-size: 1.2rem;
+  color: #fca5a5;
+  font-weight: 500;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1200px) {
+  .FullPageLeaderboard {
+    padding: 2rem 1rem;
+  }
+  .FullPageLeaderboard .leaderboard-container {
+    padding: 0 1rem;
+  }
+  .FullPageLeaderboard .leaderboard-header .header-badges {
+    gap: 1rem;
+  }
+  .FullPageLeaderboard .leaderboard-header .header-badges .badge-icon {
+    font-size: 2.5rem;
+  }
+  .FullPageLeaderboard .leaderboard-header .header-badges .leaderboard-title {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+  }
+  .FullPageLeaderboard .leaderboard-table {
+    font-size: 0.9rem;
+  }
+  .FullPageLeaderboard .leaderboard-table thead tr th {
+    padding: 1rem 0.5rem;
+    font-size: 0.85rem;
+  }
+  .FullPageLeaderboard .leaderboard-table tbody tr td {
+    padding: 1rem 0.5rem;
+  }
+  .FullPageLeaderboard .leaderboard-table tbody tr td.rank-cell {
+    padding-left: 1rem;
+  }
+  .FullPageLeaderboard .leaderboard-table tbody tr td.rank-cell .rank-badge {
+    width: 40px;
+    height: 40px;
+  }
+  .FullPageLeaderboard
+    .leaderboard-table
+    tbody
+    tr
+    td.rank-cell
+    .rank-badge
+    .rank-number {
+    font-size: 0.9rem;
+  }
+  .FullPageLeaderboard
+    .leaderboard-table
+    tbody
+    tr
+    td.name-cell
+    .user-info
+    .user-avatar {
+    width: 40px;
+    height: 40px;
+  }
+  .FullPageLeaderboard
+    .leaderboard-table
+    tbody
+    tr
+    td.name-cell
+    .user-info
+    .user-name {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .FullPageLeaderboard {
+    padding: 1.5rem 0.5rem;
+  }
+  .FullPageLeaderboard .leaderboard-header {
+    margin-bottom: 2rem;
+  }
+  .FullPageLeaderboard .leaderboard-header .header-badges {
+    gap: 0.5rem;
+  }
+  .FullPageLeaderboard .leaderboard-header .header-badges .badge-icon {
+    font-size: 2rem;
+  }
+  .FullPageLeaderboard .leaderboard-header .header-badges .leaderboard-title {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+  .FullPageLeaderboard .leaderboard-table-wrapper {
+    border-radius: 20px;
+  }
+  .FullPageLeaderboard .leaderboard-table thead tr th {
+    padding: 0.8rem 0.3rem;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+  }
+  .FullPageLeaderboard .leaderboard-table thead tr th:first-child {
+    padding-left: 0.8rem;
+  }
+  .FullPageLeaderboard .leaderboard-table tbody tr td {
+    padding: 0.8rem 0.3rem;
+    font-size: 0.85rem;
+  }
+  .FullPageLeaderboard .leaderboard-table tbody tr td.rank-cell {
+    padding-left: 0.8rem;
+  }
+  .FullPageLeaderboard .leaderboard-table tbody tr td.rank-cell .rank-badge {
+    width: 35px;
+    height: 35px;
+  }
+  .FullPageLeaderboard
+    .leaderboard-table
+    tbody
+    tr
+    td.rank-cell
+    .rank-badge
+    .rank-number {
+    font-size: 0.8rem;
+  }
+  .FullPageLeaderboard .leaderboard-table tbody tr td.name-cell .user-info {
+    gap: 0.5rem;
+  }
+  .FullPageLeaderboard
+    .leaderboard-table
+    tbody
+    tr
+    td.name-cell
+    .user-info
+    .user-avatar {
+    width: 35px;
+    height: 35px;
+  }
+  .FullPageLeaderboard
+    .leaderboard-table
+    tbody
+    tr
+    td.name-cell
+    .user-info
+    .user-name {
+    font-size: 1.5rem;
+  }
+  .FullPageLeaderboard .leaderboard-table tbody tr td.id-cell {
+    font-size: 0.75rem;
+  }
+  .FullPageLeaderboard .leaderboard-table tbody tr td.score-cell {
+    font-size: 1.5rem;
+  }
+}

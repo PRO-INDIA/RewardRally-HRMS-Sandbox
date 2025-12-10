@@ -3,7 +3,7 @@ $text-color: #191919;
 
 .SideMenu {
   width: 5rem;
-  background-color: $primary-color;
+  background: linear-gradient(to bottom, #0072bc 0%, #2bb6eb 90%);
   position: fixed;
   height: 100vh;
   top: 4rem;
@@ -12,6 +12,7 @@ $text-color: #191919;
   overflow-y: auto;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
+  margin-top: 0.5em;
 
   ul {
     color: $text-color;
@@ -36,6 +37,6 @@ $text-color: #191919;
     padding: 0.8rem;
     border-radius: 0.8rem;
     border: 0.1rem solid white;
-	transform: scale(1);
+    transform: scale(1);
   }
 }
