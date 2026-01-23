@@ -4,6 +4,11 @@
 		.body {
 			margin-left: 6rem;
 			margin-top: 2.5rem;
+
+			&.full-width {
+				margin-left: 0;
+				margin-top: 0;
+			}
 		}
 	}
 }

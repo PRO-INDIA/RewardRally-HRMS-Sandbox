@@ -10,8 +10,11 @@ const Header: FC<HeaderProps> = () => (
   <div className="header" data-testid="Header">
     <header>
       <div className="logo-name">
-        <img className="logo" src="../assets/images/flag.png" alt="logo" />
-        <span>Reward Rally</span>
+        <img
+          className="logo"
+          src="https://peninsularresearchops.com/assets/svg/logo_gray.svg"
+          alt="logo"
+        />
       </div>
       <div className="gamification-package">
         <RewardRally

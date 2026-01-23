@@ -1,0 +1,431 @@
+.RewardChallenge {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ae7f34 0%, #8c4ace 60%, #00046f 100%);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+
+  .challenge-container {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .challenge-card {
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 30px;
+    padding: 4.5rem 2.5rem 2.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out;
+    width: 100%;
+    position: relative;
+    margin-top: 40px;
+  }
+
+  .circular-image-container {
+    position: absolute;
+    top: -75px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: 10em;
+    height: 10em;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 3px 13px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    .circular-image {
+      width: 80%;
+      height: 80%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .image-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  }
+
+  .trophy-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  .gift-image {
+    width: 50%;
+  }
+
+  .prize-badge {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    .trophy {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 1rem;
+      animation: bounce 1s ease-in-out infinite;
+    }
+  }
+
+  .challenge-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin: 0 0 1rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .challenge-description {
+    font-size: 1.2rem;
+    color: #475569;
+    line-height: 1.6;
+    margin: 0 0 2rem 0;
+
+    strong {
+      color: #0a66c2;
+      font-weight: 700;
+    }
+  }
+
+  .linkedin-logo {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    animation: pulse 2s ease-in-out infinite;
+
+    svg {
+      filter: drop-shadow(0 4px 8px rgba(10, 102, 194, 0.3));
+    }
+  }
+
+  .follow-button {
+    padding: 1.2rem 3rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: linear-gradient(135deg, #0a66c2 0%, #004182 100%);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(10, 102, 194, 0.4);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 1rem 0;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    &:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(10, 102, 194, 0.5);
+      background: linear-gradient(135deg, #0052a3 0%, #003366 100%);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(-1px);
+    }
+
+    &.clicked {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      cursor: not-allowed;
+      animation: buttonSuccess 0.5s ease-out;
+    }
+
+    &:disabled {
+      opacity: 0.9;
+      cursor: not-allowed;
+    }
+  }
+
+  .spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  .waiting-message {
+    font-size: 1.1rem;
+    color: #10b981;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  // Completion Card Styles
+  .completion-card {
+    max-width: 600px;
+
+    &.time-expired {
+      border: 3px solid #ef4444;
+      animation: shake 0.5s ease-in-out;
+    }
+  }
+
+  .time-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    animation: swing 1s ease-in-out infinite;
+  }
+
+  .completion-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    animation: bounce 1s ease-in-out infinite;
+  }
+
+  .completion-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #10b981;
+    margin: 0 0 1rem 0;
+
+    .time-expired & {
+      color: #ef4444;
+    }
+  }
+
+  .retry-button {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    margin-top: 1.5rem;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  .completion-description {
+    font-size: 1.2rem;
+    color: #475569;
+    margin-bottom: 2rem;
+  }
+
+  .completion-info {
+    background: #f5f8fa;
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+
+    p {
+      margin: 0.5rem 0;
+      color: #334155;
+      font-size: 1.2rem;
+      line-height: 1.6;
+
+      strong {
+        color: black;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .social-message {
+    padding: 1rem;
+    background: #0a66c2;
+    border-radius: 12px;
+
+    p {
+      margin: 0;
+      color: white;
+      font-weight: 600;
+    }
+  }
+
+  // Animations
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      transform: translateX(-10px);
+    }
+    20%,
+    40%,
+    60%,
+    80% {
+      transform: translateX(10px);
+    }
+  }
+
+  @keyframes swing {
+    0%,
+    100% {
+      transform: rotate(-10deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes buttonSuccess {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  // Responsive Design
+  @media (max-width: 768px) {
+    padding: 1rem;
+
+    .challenge-card {
+      padding: 2.5rem 1.5rem;
+      border-radius: 20px;
+    }
+
+    .trophy-icon {
+      font-size: 3.5rem;
+    }
+
+    .challenge-title {
+      font-size: 2rem;
+    }
+
+    .challenge-description {
+      font-size: 1rem;
+    }
+
+    .linkedin-logo svg {
+      width: 60px;
+      height: 60px;
+    }
+
+    .follow-button {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .challenge-card {
+      padding: 5rem 1rem 2rem 1rem;
+    }
+
+    .trophy-icon {
+      font-size: 3rem;
+    }
+
+    .challenge-title {
+      font-size: 1.6rem;
+    }
+
+    .challenge-description {
+      font-size: 0.95rem;
+    }
+
+    .follow-button {
+      padding: 0.9rem 1.5rem;
+      font-size: 1rem;
+      gap: 0.5rem;
+    }
+
+    .waiting-message {
+      font-size: 0.95rem;
+    }
+  }
+}
