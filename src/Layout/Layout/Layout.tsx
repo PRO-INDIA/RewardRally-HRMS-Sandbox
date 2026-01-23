@@ -13,6 +13,12 @@ const LayoutContent: FC = () => {
   const isLeaderboardRoute = location.pathname === "/leaderboard";
   const isSpinWheelRoute = location.pathname === "/reward-challenge";
   const isQuizAdminRoute = location.pathname === "/quiz-admin";
+  const isLoginRoute = location.pathname === "/login";
+
+  // If on login page, render only the routes (login page handles its own layout)
+  if (isLoginRoute) {
+    return <AppRoutes />;
+  }
 
   return (
     <div className="Layout">
